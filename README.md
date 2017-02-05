@@ -11,6 +11,19 @@ Telemetry will be sent via 2m APRS using the [HX1 2m Transmitter](http://www.rad
 
 Antenna will be a simple half-wavelength dipole, likely based on [this](http://bear.sbszoo.com/construction/antenna/cf/hwcf2.htm) or [this.](http://bear.sbszoo.com/construction/antenna/cf/hwcf1.htm)
 
+### HX-1 Transmitter
+- [Main Page](http://www.radiometrix.com/content/hx1)
+
+Pinout
+Pin Label | Functionality | Wire Color
+--------- | ------------- | ----------
+1, 3 | RF Ground | N/A
+2 | RF out | N/A 
+4 | Active-high Enable | N/A
+5 | 5V Supply | N/A
+6 | GND | N/A
+7 | TX Data | N/A
+
 # Sensors
 ## U-Blox MAX-M8 GPS Receiver
 ### Datasheets
