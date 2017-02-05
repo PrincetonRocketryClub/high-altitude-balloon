@@ -13,17 +13,17 @@ Antenna will be a simple half-wavelength dipole, likely based on [this](http://b
 
 # Sensors
 ## U-Blox MAX-M8 GPS Receiver
-###Datasheets
+### Datasheets
 - [Breakout Board](https://store.uputronics.com/?route=product/product&product_id=72)
 - [Hardware Specs](https://www.u-blox.com/sites/default/files/MAX-M8-FW3_DataSheet_%28UBX-15031506%29.pdf)
 - [Protocol Spec](https://www.u-blox.com/sites/default/files/products/documents/u-blox8-M8_ReceiverDescrProtSpec_%28UBX-13003221%29_Public.pdf)
 
-###Software
+### Software
 Outputs NEMA strings over serial, so should integrate with Trackuino's code nicely. Might have to do some configuration via UART.
 
 Config example: http://ava.upuaut.net/?p=738
 
-###I/O
+### I/O
 Pin Label | Functionality | Wire Color
 --------- | ------------- | ----------
 SDA | I2C | N/A
@@ -34,10 +34,48 @@ GND | Ground | Black
 VCC | 3.3V Power | Red
 
 ## BMP180 Barometer/Temperature
+### Datasheets
+- [Adafruit](https://www.adafruit.com/products/1603)
+- [Library](https://learn.sparkfun.com/tutorials/bmp180-barometric-pressure-sensor-hookup-/installing-the-arduino-library)
+
+### Software
+Use the Sparkfun library. Communicates over I2C, nothing fancy.
+
+### I/O
+Pin Label | Functionality | Wire Color
+--------- | ------------- | ----------
+VIN | 5V power in, feeds on-board regulator | N/A
+3V3 | 3V3 power rail | N/A 
+GND | Ground | Black
+SCL | I2C | N/A
+SDA | I2C | N/A
 
 ## MMA8451 3-axis accelerometer
+### Datasheets
+- [Adafruit](https://www.adafruit.com/product/2019)
+- [Library](https://learn.adafruit.com/adafruit-mma8451-accelerometer-breakout/wiring-and-test)
+
+### Software
+Use the Adafruit library. Communicates over I2C.
+
+### I/O
+Pin Label | Functionality | Wire Color
+--------- | ------------- | ----------
+VIN | 5V power in, feeds on-board regulator | N/A
+3Vo | 3V3 power rail | N/A 
+GND | Ground | Black
+SCL | I2C | N/A
+SDA | I2C | N/A
+A | Address Select | NC for address 0x1C
+I1 | Interrupt 1 | NC
+I2 | Interrupt 2 | NC
 
 ## 3950 NTC Thermristor
+### Datasheets
+- [Adafruit](https://www.adafruit.com/product/372)
+- [Tutorial](https://learn.adafruit.com/thermistor/using-a-thermistor)
+
+Hook it up with a 10k resistor in a voltage divider setup, read with ADC.
 
 # Actuators
 
