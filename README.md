@@ -21,6 +21,8 @@ Antenna will be a simple half-wavelength dipole, likely based on [this](http://b
 ###Software
 Outputs NEMA strings over serial, so should integrate with Trackuino's code nicely. Might have to do some configuration via UART.
 
+Config example: http://ava.upuaut.net/?p=738
+
 ###I/O
 Pin Label | Functionality | Wire Color
 --------- | ------------- | ----------
