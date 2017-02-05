@@ -15,6 +15,7 @@ Antenna will be a simple half-wavelength dipole, likely based on [this](http://b
 - [Main Page](http://www.radiometrix.com/content/hx1)
 
 Pinout
+
 Pin Label | Functionality | Wire Color
 --------- | ------------- | ----------
 1, 3 | RF Ground | N/A
