@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name Teensy)(type KiCad)(uri /Users/ag6gr/Desktop/kicad_teensy-master/Teensy.pretty)(options "")(descr ""))
+)
