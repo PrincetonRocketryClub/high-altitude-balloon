@@ -53,7 +53,7 @@ VCC | 3.3V Power | Red
 - [Library](https://learn.sparkfun.com/tutorials/bmp180-barometric-pressure-sensor-hookup-/installing-the-arduino-library)
 
 ### Software
-Use the Sparkfun library. Communicates over I2C, nothing fancy.
+Use the Sparkfun library. Communicates over I2C, nothing fancy. Must use SCL/SDA0 since those correspond to the default Wire interface.
 
 ### I/O
 Pin Label | Functionality | Wire Color
@@ -61,8 +61,8 @@ Pin Label | Functionality | Wire Color
 VIN | 5V power in, feeds on-board regulator | N/A
 3V3 | 3V3 power rail | N/A 
 GND | Ground | Black
-SCL | I2C | N/A
-SDA | I2C | N/A
+SCL | I2C | SCL0 (Pin 19)
+SDA | I2C | SDA0 (Pin 18)
 
 ## MMA8451 3-axis accelerometer
 ### Datasheets
