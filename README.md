@@ -18,12 +18,12 @@ Pinout
 
 Pin Label | Functionality | Wire Color
 --------- | ------------- | ----------
-1, 3 | RF Ground | N/A
-2 | RF out | N/A 
+1, 3 | RF Ground | SMA Shield
+2 | RF out | SMA Center pin
 4 | Active-high Enable | N/A
 5 | 5V Supply | N/A
 6 | GND | N/A
-7 | TX Data | N/A
+7 | TX Data | DAC0
 
 # Sensors
 ## U-Blox MAX-M8 GPS Receiver
@@ -75,11 +75,11 @@ Use the Adafruit library. Communicates over I2C.
 ### I/O
 Pin Label | Functionality | Wire Color
 --------- | ------------- | ----------
-VIN | 5V power in, feeds on-board regulator | N/A
+VIN | 5V power in, feeds on-board regulator | NC
 3Vo | 3V3 power rail | N/A 
 GND | Ground | Black
-SCL | I2C | N/A
-SDA | I2C | N/A
+SCL | I2C | SCL0 (Pin 19)
+SDA | I2C | SDA0 (Pin 18)
 A | Address Select | NC for address 0x1C
 I1 | Interrupt 1 | NC
 I2 | Interrupt 2 | NC
