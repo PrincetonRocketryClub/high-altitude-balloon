@@ -19,24 +19,24 @@
  */
 
 #include <WProgram.h>
-// Note: this example uses my GPS library for the Adafruit Ultimate GPS
-// Code located here: https://github.com/rvnash/ultimate_gps_teensy3
-#include <GPS.h>
 #include <aprs.h>
+
+// TinyGPSPlus from http://arduiniana.org/libraries/tinygpsplus/
+#include "TinyGPS++.h"
 
 // APRS Information
 #define PTT_PIN 13 // Push to talk pin
 
 // Set your callsign and SSID here. Common values for the SSID are
-#define S_CALLSIGN      "KC3ARY"
-#define S_CALLSIGN_ID   1   // 11 is usually for balloons
+#define S_CALLSIGN      "AG6GR"
+#define S_CALLSIGN_ID   11   // 11 is usually for balloons
 // Destination callsign: APRS (with SSID=0) is usually okay.
 #define D_CALLSIGN      "APRS"
 #define D_CALLSIGN_ID   0
 // Symbol Table: '/' is primary table '\' is secondary table
 #define SYMBOL_TABLE '/' 
 // Primary Table Symbols: /O=balloon, /-=House, /v=Blue Van, />=Red Car
-#define SYMBOL_CHAR 'v'
+#define SYMBOL_CHAR '0'
 
 struct PathAddress addresses[] = {
   {(char *)D_CALLSIGN, D_CALLSIGN_ID},  // Destination callsign
@@ -45,9 +45,7 @@ struct PathAddress addresses[] = {
   {(char *)NULL, 0}  // Digi2 (second digi in the chain)
 };
 
-
-HardwareSerial &gpsSerial = Serial1;
-GPS gps(&gpsSerial,true);
+TinyGPSPlus gps; // GPS NEMA string decoder
 
 // setup() method runs once, when the sketch starts
 void setup()
@@ -120,7 +118,8 @@ bool gotGPS = false;
 // as long as the board has power
 void loop()
 {
-  if (gps.sentenceAvailable()) gps.parseSentence();
+  while (Serial1.available() > 0)
+  	  gps.encode(ss.read());
 
   if (gps.newValuesSinceDataRead()) {
     gotGPS = true; // @TODO: Should really check to see if the location data is still valid

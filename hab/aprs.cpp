@@ -192,9 +192,9 @@ void aprs_send(const PathAddress * const paths, const int nPaths,
   snprintf(temp, sizeof(temp), "%03d", (unsigned int) (speed + 0.5));
   ax25_send_string(temp);             // speed (knots)
 
-  ax25_send_string("/A="); // Altitude (feet). Goes anywhere in the comment area
+  ax25_send_string("/A="); // Altitude (meters). Goes anywhere in the comment area
 
-  snprintf(temp, sizeof(temp), "%06ld", (long) (altitude / 0.3048)); // 10000 ft = 3048 m
+  snprintf(temp, sizeof(temp), "%06ld", (long) altitude);
   ax25_send_string(temp);
 
   ax25_send_string(comment);     // Comment
