@@ -24,19 +24,28 @@
 // TinyGPSPlus from http://arduiniana.org/libraries/tinygpsplus/
 #include "TinyGPS++.h"
 
-// APRS Information
+// ----- Pin Definitions ----- //
 #define PTT_PIN 13 // Push to talk pin
 
-// Set your callsign and SSID here. Common values for the SSID are
-#define S_CALLSIGN		"AG6GR"
-#define S_CALLSIGN_ID	11	 // 11 is usually for balloons
+// ----- APRS Constants ----- //
+// Callsign and SSID
+#define S_CALLSIGN "AG6GR"
+#define S_CALLSIGN_ID	11	 //  SSID is the attached ID number ex. W1AW-11. 11 is usually for balloons
+
 // Destination callsign: APRS (with SSID=0) is usually okay.
 #define D_CALLSIGN		"APRS"
 #define D_CALLSIGN_ID	0
+
 // Symbol Table: '/' is primary table '\' is secondary table
 #define SYMBOL_TABLE '/' 
 // Primary Table Symbols: /O=balloon, /-=House, /v=Blue Van, />=Red Car
 #define SYMBOL_CHAR '0'
+
+// ----- Misc Constants ----- //
+#define MAXSENDBUFFER 500 // Used to allocate a static buffer on the stack to build the AX25 buffer
+
+// ===== GLOBAL VARIABLES ==== //
+char strbuf[MAXSENDBUFFER];
 
 struct PathAddress addresses[] = {
 	{(char *)D_CALLSIGN, D_CALLSIGN_ID},	// Destination callsign
@@ -47,13 +56,16 @@ struct PathAddress addresses[] = {
 
 TinyGPSPlus gps; // GPS NEMA string decoder
 
-// setup() method runs once, when the sketch starts
+uint32_t timeOfAPRS = 0; // Tracks time of last APRS transmission
+bool gotGPS = false; // Flag if a valid GPS fix has been received
+
+// ===== FUNCTIONS ===== //
+
+// Setup code run once on startup
 void setup()
 {
 	Serial.begin(38400); // For debugging output over the USB port
-	gps.startSerial(9600);
 	delay(1000);
-	gps.setSentencesToReceive(OUTPUT_RMC_GGA);
 	
 	// Set up the APRS module
 	aprs_setup(50, // number of preamble flags to send
@@ -63,12 +75,15 @@ void setup()
 		);
 }
 
-// Function to broadcast your location
+/*
+ * Sets up and transmits a APRS packet, using the given GPS instance and
+ * comment string
+ */
 void broadcastLocation(TinyGPSPlus &gps, const char *comment)
 {
 	int nAddresses;
-	if (gps.altitude > 1500) {
-		// APRS recomendations for > 5000 feet is:
+	if (gps.altitude.meters() > 1500) {
+		// APRS recomendations for > 5000 feet = 1500 m is:
 		// Path: WIDE2-1 is acceptable, but no path is preferred.
 		nAddresses = 3;
 		addresses[2].callsign = "WIDE2";
@@ -99,34 +114,38 @@ void broadcastLocation(TinyGPSPlus &gps, const char *comment)
 	Serial.print(SYMBOL_CHAR);
 	Serial.println();
 	
+	// Package the packet
+	createAPRSStr(strbuf, gps, SYMBOL_TABLE, SYMBOL_CHAR, comment);
+	
+	// Print for debugging
+	Serial.println(strbuf);
+	
 	// Send the packet
-	aprs_send(addresses, nAddresses,
-		gps, SYMBOL_TABLE, SYMBOL_CHAR, comment);
+	aprs_send(addresses, nAddresses, strbuf);
 }
 
-uint32_t timeOfAPRS = 0;
-bool gotGPS = false;
-// the loop() methor runs over and over again,
-// as long as the board has power
+
+// Main loop, run repeatedly
 void loop()
 {
+	// Read in new GPS data if available
 	while (Serial1.available() > 0)
 		gps.encode(ss.read());
 	
-	if (gps.newValuesSinceDataRead()) {
+	// GPS Debug logging
+	if (gps.altitude.isUpdated()) {
 		gotGPS = true; // @TODO: Should really check to see if the location data is still valid
-		gps.dataRead();
-		Serial.printf("Location: %f, %f altitude %f\n\r",
-			gps.latitude, gps.longitude, gps.altitude);
+		Serial.printf("Location: %f, %f altitude %f\r\n",
+			gps.location.lat(), gps.location.lng(), gps.altitude.meters());
 	}
 	
 	if (gotGPS && timeOfAPRS + 60000 < millis()) {
-		broadcastLocation(gps, "HELLO" );
+		broadcastLocation(gps, "HELLO");
 		timeOfAPRS = millis();
 	}
 }
 
-// Called from the powerup interrupt servicing routine.
+// OLD CODE, MIGHT BE REMOVABLE Called from the powerup interrupt servicing routine.
 int main(void)
 {
 	setup();

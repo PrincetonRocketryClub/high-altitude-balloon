@@ -31,27 +31,81 @@
 #include "aprs.h"
 #include "TinyGPS++.h"
 
-#define MAXSENDBUFFER 500 // Used to allocate a static buffer on the stack to build the AX25 buffer
-
 uint16_t preambleFlags;
 
 // Convert latitude from a float to a string DDMM.MM[N/S]
-void latToStr(char * const s, const int size, RawDegrees latitude)
+int latToStr(char * const s, const int size, RawDegrees latitude)
 {
 	char hemisphere = latitude.negative ? "S" : "N";
 	// TODO verify if minutes includes whole degrees
 	uint32_t milli_minutes = 60 * latitude.billionths / 10000000;
-	snprintf(s, size, "%02d%02d.%02d%c", latitude.deg, milli_minutes / 100, milli_minutes % 100, hemisphere);
+	return snprintf(s, size, "%02d%02d.%02d%c", latitude.deg, milli_minutes / 100, milli_minutes % 100, hemisphere);
 }
 
 // Convert latitude from a float to a string DDDMM.MM[W/E]
-void lonToStr(char * const s, const int size, RawDegrees longitude)
+int lonToStr(char * const s, const int size, RawDegrees longitude)
 {
 	char hemisphere = longitude.negative ? "W" : "E";
 	
 	// TODO verify if minutes includes whole degrees
 	uint32_t milli_minutes = 60 * longitude.billionths / 10000000;
-	snprintf(s, size, "%03d%02d.%02d%c", longitude.deg, milli_minutes / 100, milli_minutes % 100, hemisphere);
+	return snprintf(s, size, "%03d%02d.%02d%c", longitude.deg, milli_minutes / 100, milli_minutes % 100, hemisphere);
+}
+/*
+ * Packages the given GPS and identification information into an APRS packet string
+ * and stores it in the given buffer buf.
+ * Returns the length of the string written, not including terminating /0
+ */
+int createAPRSStr(char * &buf, TinyGPSPlus &gps, const char symbolTableIndicator, 
+	const char symbol, const char * const comment) {
+	int index = 0;
+	
+	// ----- Begin Comment/Data section ----- //
+	
+	// Data type flag byte
+	// '/': Report w/ timestamp, no APRS messaging. 
+	// '$': NMEA raw data
+	buf[0] = '/';
+	index++;
+	
+	// Timestamp HHMMSS format, append h to indicate HMS format
+	index += snprintf(&buf[index], sizeof(buf) - index, "%02u%02u%02uh", (unsigned int) gps.time.hour(),
+		(unsigned int) gps.time.minute(), (unsigned int) gps.time.second());
+	
+	// ----- Position Data ----- //
+	
+	// Example location block: "4903.50N/07201.75W-", using Symbol Table ID '/' and Code '-'
+	
+	// Latitude DDMM.MM
+	index += latToStr(buf[index], sizeof(buf) - index, gps.location.rawLat());
+	
+	// Display Symbol Table ID
+	buf[index] = symbolTableIndicator;
+	index++;
+	
+	// Longitude DDDMM.MM
+	index += lonToStr(buf[index], sizeof(buf) - index, gps.location.rawLng());
+	
+	// Display Symbol Code
+	buf[index] = symbol;
+	index++;
+	
+	// ----- APRS Data Extension CSE + '/' + SPD (7b) ----- //
+	// Heading (degrees, 3b) / Speed (knots, 3b)
+	index += snprintf(buf[index], sizeof(buf) - index, "%03u/%03d", 
+		(unsigned int)gps.course.deg(), (unsigned int) gps.speed.knots());
+	
+	// Altitude /A=aaaaaa, must be in feet. 
+	index += snprintf(buf[index], sizeof(buf) - index, "/A=%06d", (unsigned int)gps.altitude.feet());
+	
+	// ----- Additional Comments ----- //
+	
+	// Extra comments
+	strncat(buf[index], comment, sizeof(buf) - index);
+	index += sizeof(comment);
+	
+	// Don't forget to count ending '\0'
+	return index;
 }
 
 // Dump out the AX25 packet in a semi-readable way
@@ -141,69 +195,15 @@ void aprs_setup(const uint16_t p_preambleFlags, const uint8_t pttPin,
 // In PTT mode the pin given will be raised high, and then PTT_DELAY ms later, the packet will
 // begin
 void aprs_send(const PathAddress * const paths, const int nPaths,
-	TinyGPSPlus &gps,
-	const char symbolTableIndicator, const char symbol,
-    const char * const comment)
+	const char * dataStr);
 {
 	uint8_t buf[MAXSENDBUFFER];
-	char temp[12];
 	
 	ax25_initBuffer(buf, sizeof(buf));
 	
 	ax25_send_header(paths, nPaths, preambleFlags);
 	
-	// ----- Begin Comment/Data section ----- //
-	
-	// Data type flag byte
-	// '/': Report w/ timestamp, no APRS messaging. 
-	// '$': NMEA raw data
-	ax25_send_byte('/');
-	
-	// Timestamp HHMMSS format, append h to indicate HMS format
-	snprintf(temp, sizeof(temp), "%02u%02u%02uh", (unsigned int) gps.time.hour(),
-		(unsigned int) gps.time.minute(), (unsigned int) gps.time.second());
-	ax25_send_string(temp);
-	
-	// ----- Position Data ----- //
-	
-	// Example location block: "4903.50N/07201.75W-", using Symbol Table ID '/' and Code '-'
-	
-	// Latitude DDMM.MM
-	latToStr(temp, sizeof(temp), gps.location.rawLat());
-	ax25_send_string(temp);
-	
-	// Display Symbol Table ID
-	ax25_send_byte(symbolTableIndicator);
-	
-	// Longitude DDDMM.MM
-	lonToStr(temp, sizeof(temp), gps.location.rawLng());
-	ax25_send_string(temp);     // Lon: 000deg and 25.80 min
-	
-	// Display Symbol Code
-	ax25_send_byte(symbol);
-	
-	// ----- APRS Data Extension CSE + '/' + SPD (7b) ----- //
-	// Heading (degrees, 3b)
-	snprintf(temp, sizeof(temp), "%03u", (unsigned int)gps.course.deg());
-	ax25_send_string(temp);
-	
-	// Separator
-	ax25_send_byte('/');
-	
-	// Speed (knots)
-	snprintf(temp, sizeof(temp), "%03d", (unsigned int) gps.speed.knots());
-	ax25_send_string(temp);
-	
-	// Altitude /A=aaaaaa, must be in feet. 
-	ax25_send_string("/A="); 
-	snprintf(temp, sizeof(temp), "%06d", (unsigned int)gps.altitude.feet());
-	ax25_send_string(temp);
-	
-	// ----- Additional Comments ----- //
-	
-	
-	// Extra comments
-	ax25_send_string(comment);     
+	ax25_send_string(dataStr);
 	
 	// Footer
 	ax25_send_footer();
@@ -224,5 +224,5 @@ void aprs_send(const PathAddress * const paths, const int nPaths,
 		;
 	
 	// Debug logging
-	logBuffer(buf, ax25_getPacketSize());
+	//logBuffer(buf, ax25_getPacketSize());
 }
