@@ -1,4 +1,4 @@
-update=Friday, March 10, 2017 'PMt' 05:34:47 PM
+update=Saturday, March 11, 2017 'PMt' 04:42:58 PM
 version=1
 last_client=kicad
 [pcbnew]
@@ -59,3 +59,4 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=libraries/kicad_teensy-master/teensy
+LibName31=libraries/hx1

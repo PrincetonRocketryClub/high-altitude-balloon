@@ -1,3 +1,4 @@
 (fp_lib_table
   (lib (name Teensy)(type KiCad)(uri "$(KIPRJMOD)/libraries/kicad_teensy-master/Teensy.pretty")(options "")(descr ""))
+  (lib (name HX1)(type KiCad)(uri "$(KIPRJMOD)/libraries/HX1.pretty")(options "")(descr ""))
 )
