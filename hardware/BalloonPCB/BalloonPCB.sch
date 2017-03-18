@@ -613,8 +613,17 @@ NoConn ~ 4900 5550
 NoConn ~ 5200 5550
 NoConn ~ 5700 5550
 NoConn ~ 5800 5550
-Text GLabel 8950 3550 2    60   Input ~ 0
-RF-
 Text GLabel 8750 3350 1    60   Input ~ 0
 RF+
+$Comp
+L GND #PWR?
+U 1 1 58CDBAA3
+P 8850 3550
+F 0 "#PWR?" H 8850 3300 50  0001 C CNN
+F 1 "GND" H 8850 3400 50  0000 C CNN
+F 2 "" H 8850 3550 50  0000 C CNN
+F 3 "" H 8850 3550 50  0000 C CNN
+	1    8850 3550
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
