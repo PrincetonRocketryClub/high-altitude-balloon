@@ -1,4 +1,4 @@
-update=Saturday, March 11, 2017 'PMt' 04:42:58 PM
+update=Saturday, March 18, 2017 'PMt' 08:20:17 PM
 version=1
 last_client=kicad
 [pcbnew]
@@ -23,8 +23,6 @@ ModuleOutlineThickness=0.150000000000
 [cvpcb]
 version=1
 NetIExt=net
-[general]
-version=1
 [eeschema]
 version=1
 LibDir=libraries
@@ -60,3 +58,5 @@ LibName28=contrib
 LibName29=valves
 LibName30=libraries/kicad_teensy-master/teensy
 LibName31=libraries/hx1
+[general]
+version=1
