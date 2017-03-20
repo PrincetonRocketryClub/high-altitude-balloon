@@ -39,9 +39,16 @@ Pin Label | Functionality | Connection
 - [Protocol Spec](https://www.u-blox.com/sites/default/files/products/documents/u-blox8-M8_ReceiverDescrProtSpec_%28UBX-13003221%29_Public.pdf)
 
 ### Software
-Outputs NEMA strings over serial, so should integrate with Trackuino's code nicely. Might have to do some configuration via UART.
+Outputs NEMA strings over serial, so should integrate with Trackuino's code nicely. Might have to do some configuration via UART. See page 175 of protocol spec for NMEA config. 
 
-Config example: http://ava.upuaut.net/?p=738
+Config tutorial: http://ava.upuaut.net/?p=738
+
+The settings we'll need:
+- Set non-GPS source's ID's to GPGGA for compatibility
+- Double check all available sources are enabled
+- Disable some unnecessary debug outputs
+- Figure out how to switch between low and high altitude mode
+- Change refresh rate
 
 ### I/O
 Pin Label | Functionality | Connection
