@@ -25,6 +25,8 @@
 #ifndef __APRS_H__
 #define __APRS_H__
 
+#include "TinyGPS++.h"
+
 struct PathAddress
 {
   const char *callsign;
@@ -38,11 +40,14 @@ void aprs_setup(const uint16_t preambleFlags, // number of preambleFlags to send
     );
 
 void aprs_send(const PathAddress * const paths, const int nPaths,
-    const uint8_t dayOfMonth, const uint8_t hour, const uint8_t min,
-    const float lat,
-    const float lon, // degrees
-    const float altitude, // meters
-    const uint16_t heading, // degrees
-    const float speed, const char symbolTableIndicator, const char symbol,
-    const char * const comment); // Synchronized ... won't return until the entire packet is sent
+	const char * dataStr); // Synchronized ... won't return until the entire packet is sent
+
+/*
+ * Packages the given GPS and identification information into an APRS packet string
+ * and stores it in the given buffer buf.
+ * Returns the length of the string written, not including terminating /0
+ */
+int createAPRSStr( char * buf, TinyGPSPlus &gps, const char symbolTableIndicator, 
+	const char symbol, const char* comment);
+
 #endif

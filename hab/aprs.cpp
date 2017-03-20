@@ -31,33 +31,35 @@
 #include "aprs.h"
 #include "TinyGPS++.h"
 
+#define MAXSENDBUFFER 500
+
 uint16_t preambleFlags;
 
 // Convert latitude from a float to a string DDMM.MM[N/S]
 int latToStr(char * const s, const int size, RawDegrees latitude)
 {
-	char hemisphere = latitude.negative ? "S" : "N";
+	char hemisphere = latitude.negative ? 'S' : 'N';
 	// TODO verify if minutes includes whole degrees
 	uint32_t milli_minutes = 60 * latitude.billionths / 10000000;
-	return snprintf(s, size, "%02d%02d.%02d%c", latitude.deg, milli_minutes / 100, milli_minutes % 100, hemisphere);
+	return snprintf(s, size, "%02d%02lu.%02lu%c", latitude.deg, milli_minutes / 100, milli_minutes % 100, hemisphere);
 }
 
 // Convert latitude from a float to a string DDDMM.MM[W/E]
 int lonToStr(char * const s, const int size, RawDegrees longitude)
 {
-	char hemisphere = longitude.negative ? "W" : "E";
+	char hemisphere = longitude.negative ? 'W' : 'E';
 	
 	// TODO verify if minutes includes whole degrees
 	uint32_t milli_minutes = 60 * longitude.billionths / 10000000;
-	return snprintf(s, size, "%03d%02d.%02d%c", longitude.deg, milli_minutes / 100, milli_minutes % 100, hemisphere);
+	return snprintf(s, size, "%03d%02lu.%02lu%c", longitude.deg, milli_minutes / 100, milli_minutes % 100, hemisphere);
 }
 /*
  * Packages the given GPS and identification information into an APRS packet string
  * and stores it in the given buffer buf.
  * Returns the length of the string written, not including terminating /0
  */
-int createAPRSStr(char * &buf, TinyGPSPlus &gps, const char symbolTableIndicator, 
-	const char symbol, const char * const comment) {
+int createAPRSStr( char * buf, TinyGPSPlus &gps, const char symbolTableIndicator, 
+	const char symbol, const char* comment) {
 	int index = 0;
 	
 	// ----- Begin Comment/Data section ----- //
@@ -77,14 +79,14 @@ int createAPRSStr(char * &buf, TinyGPSPlus &gps, const char symbolTableIndicator
 	// Example location block: "4903.50N/07201.75W-", using Symbol Table ID '/' and Code '-'
 	
 	// Latitude DDMM.MM
-	index += latToStr(buf[index], sizeof(buf) - index, gps.location.rawLat());
+	index += latToStr(&buf[index], sizeof(buf) - index, gps.location.rawLat());
 	
 	// Display Symbol Table ID
 	buf[index] = symbolTableIndicator;
 	index++;
 	
 	// Longitude DDDMM.MM
-	index += lonToStr(buf[index], sizeof(buf) - index, gps.location.rawLng());
+	index += lonToStr(&buf[index], sizeof(buf) - index, gps.location.rawLng());
 	
 	// Display Symbol Code
 	buf[index] = symbol;
@@ -92,16 +94,16 @@ int createAPRSStr(char * &buf, TinyGPSPlus &gps, const char symbolTableIndicator
 	
 	// ----- APRS Data Extension CSE + '/' + SPD (7b) ----- //
 	// Heading (degrees, 3b) / Speed (knots, 3b)
-	index += snprintf(buf[index], sizeof(buf) - index, "%03u/%03d", 
+	index += snprintf(&buf[index], sizeof(buf) - index, "%03u/%03d", 
 		(unsigned int)gps.course.deg(), (unsigned int) gps.speed.knots());
 	
 	// Altitude /A=aaaaaa, must be in feet. 
-	index += snprintf(buf[index], sizeof(buf) - index, "/A=%06d", (unsigned int)gps.altitude.feet());
+	index += snprintf(&buf[index], sizeof(buf) - index, "/A=%06d", (unsigned int)gps.altitude.feet());
 	
 	// ----- Additional Comments ----- //
 	
 	// Extra comments
-	strncat(buf[index], comment, sizeof(buf) - index);
+	strncat(&buf[index], comment, sizeof(buf) - index);
 	index += sizeof(comment);
 	
 	// Don't forget to count ending '\0'
@@ -195,7 +197,7 @@ void aprs_setup(const uint16_t p_preambleFlags, const uint8_t pttPin,
 // In PTT mode the pin given will be raised high, and then PTT_DELAY ms later, the packet will
 // begin
 void aprs_send(const PathAddress * const paths, const int nPaths,
-	const char * dataStr);
+	const char * dataStr)
 {
 	uint8_t buf[MAXSENDBUFFER];
 	

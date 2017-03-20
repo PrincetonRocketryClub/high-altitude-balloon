@@ -19,13 +19,17 @@
 */
 
 #include <WProgram.h>
-#include <aprs.h>
+#include "aprs.h"
 
 // TinyGPSPlus from http://arduiniana.org/libraries/tinygpsplus/
 #include "TinyGPS++.h"
 
 // ----- Pin Definitions ----- //
-#define PTT_PIN 13 // Push to talk pin
+#define PTT_PIN 11 // Push to talk pin
+#define THERMISTOR_PIN 17 // Thermistor Analog Input
+
+#define GPS_SERIAL Serial4 // GPS Serial port
+#define GPS_BAUDRATE 9600
 
 // ----- APRS Constants ----- //
 // Callsign and SSID
@@ -45,7 +49,7 @@
 #define MAXSENDBUFFER 500 // Used to allocate a static buffer on the stack to build the AX25 buffer
 
 // ===== GLOBAL VARIABLES ==== //
-char strbuf[MAXSENDBUFFER];
+char strbuf[MAXSENDBUFFER] = {};
 
 struct PathAddress addresses[] = {
 	{(char *)D_CALLSIGN, D_CALLSIGN_ID},	// Destination callsign
@@ -65,6 +69,10 @@ bool gotGPS = false; // Flag if a valid GPS fix has been received
 void setup()
 {
 	Serial.begin(38400); // For debugging output over the USB port
+	
+	// Setup sensors
+	GPS_SERIAL.begin(GPS_BAUDRATE);
+	
 	delay(1000);
 	
 	// Set up the APRS module
@@ -79,7 +87,7 @@ void setup()
  * Sets up and transmits a APRS packet, using the given GPS instance and
  * comment string
  */
-void broadcastLocation(TinyGPSPlus &gps, const char *comment)
+void broadcastLocation(TinyGPSPlus &gps, char *comment)
 {
 	int nAddresses;
 	if (gps.altitude.meters() > 1500) {
@@ -129,8 +137,8 @@ void broadcastLocation(TinyGPSPlus &gps, const char *comment)
 void loop()
 {
 	// Read in new GPS data if available
-	while (Serial1.available() > 0)
-		gps.encode(ss.read());
+	while (GPS_SERIAL.available() > 0)
+		gps.encode(GPS_SERIAL.read());
 	
 	// GPS Debug logging
 	if (gps.altitude.isUpdated()) {
@@ -140,7 +148,7 @@ void loop()
 	}
 	
 	if (gotGPS && timeOfAPRS + 60000 < millis()) {
-		broadcastLocation(gps, "HELLO");
+		//broadcastLocation(gps, "HELLO");
 		timeOfAPRS = millis();
 	}
 }
