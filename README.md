@@ -22,14 +22,14 @@ String:
 
 Pinout
 
-Pin Label | Functionality | Wire Color
+Pin Label | Functionality | Connection
 --------- | ------------- | ----------
 1, 3 | RF Ground | SMA Shield
 2 | RF out | SMA Center pin
-4 | Active-high Enable | N/A
+4 | Active-high Enable | Digital pin 11
 5 | 5V Supply | N/A
 6 | GND | N/A
-7 | TX Data | DAC0
+7 | TX Data | DAC1
 
 # Sensors
 ## U-Blox MAX-M8 GPS Receiver
@@ -44,14 +44,14 @@ Outputs NEMA strings over serial, so should integrate with Trackuino's code nice
 Config example: http://ava.upuaut.net/?p=738
 
 ### I/O
-Pin Label | Functionality | Wire Color
+Pin Label | Functionality | Connection
 --------- | ------------- | ----------
 SDA | I2C | N/A
 SCL | I2C | N/A 
-TXD | Serial UART | Blue
-RXD | Serial UART | Yellow
-GND | Ground | Black
-VCC | 3.3V Power | Red
+TXD | Serial UART | Serial4 RX
+RXD | Serial UART | Serial4 TX
+GND | Ground | 
+VCC | 3.3V Power | 
 
 ## BMP180 Barometer/Temperature
 ### Datasheets
@@ -62,7 +62,7 @@ VCC | 3.3V Power | Red
 Use the Sparkfun library. Communicates over I2C, nothing fancy. Must use SCL/SDA0 since those correspond to the default Wire interface.
 
 ### I/O
-Pin Label | Functionality | Wire Color
+Pin Label | Functionality | Connection
 --------- | ------------- | ----------
 VIN | 5V power in, feeds on-board regulator | N/A
 3V3 | 3V3 power rail | N/A 
@@ -95,7 +95,7 @@ I2 | Interrupt 2 | NC
 - [Adafruit](https://www.adafruit.com/product/372)
 - [Tutorial](https://learn.adafruit.com/thermistor/using-a-thermistor)
 
-Hook it up with a 10k resistor in a voltage divider setup, read with ADC.
+Hook it up with a 10k resistor in a voltage divider setup, read with ADC. Connected to ADC17
 
 # Actuators
 
