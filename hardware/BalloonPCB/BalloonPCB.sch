@@ -38,7 +38,7 @@ encoding utf-8
 Sheet 1 1
 Title "High Altitude Balloon Main Board"
 Date "2017-03-11"
-Rev "0.1"
+Rev "1.0"
 Comp "Princeton Rocketry Club"
 Comment1 ""
 Comment2 ""
@@ -723,4 +723,29 @@ Connection ~ 1750 6100
 Connection ~ 1750 6200
 Connection ~ 1750 6300
 Connection ~ 1750 6400
+$Comp
+L C C3
+U 1 1 58D028AC
+P 8750 4000
+F 0 "C3" H 8775 4100 50  0000 L CNN
+F 1 "0.1uF" H 8775 3900 50  0000 L CNN
+F 2 "Capacitors_THT:C_Disc_D3_P2.5" H 8788 3850 50  0001 C CNN
+F 3 "" H 8750 4000 50  0000 C CNN
+	1    8750 4000
+	1    0    0    -1  
+$EndComp
+Connection ~ 8750 3850
+$Comp
+L GND #PWR022
+U 1 1 58D0292E
+P 8750 4200
+F 0 "#PWR022" H 8750 3950 50  0001 C CNN
+F 1 "GND" H 8750 4050 50  0000 C CNN
+F 2 "" H 8750 4200 50  0000 C CNN
+F 3 "" H 8750 4200 50  0000 C CNN
+	1    8750 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8750 4150 8750 4200
 $EndSCHEMATC
