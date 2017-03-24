@@ -65,24 +65,6 @@ bool gotGPS = false; // Flag if a valid GPS fix has been received
 
 // ===== FUNCTIONS ===== //
 
-// Setup code run once on startup
-void setup()
-{
-	Serial.begin(38400); // For debugging output over the USB port
-	
-	// Setup sensors
-	GPS_SERIAL.begin(GPS_BAUDRATE);
-	
-	delay(1000);
-	
-	// Set up the APRS module
-	aprs_setup(50, // number of preamble flags to send
-		PTT_PIN, // Use PTT pin
-		100, // ms to wait after PTT to transmit
-		0, 0 // No VOX ton
-		);
-}
-
 /*
  * Sets up and transmits a APRS packet, using the given GPS instance and
  * comment string
@@ -132,6 +114,24 @@ void broadcastLocation(TinyGPSPlus &gps, char *comment)
 	aprs_send(addresses, nAddresses, strbuf);
 }
 
+// Setup code run once on startup
+void setup()
+{
+	Serial.begin(19200); // For debugging output over the USB port
+	Serial.println("Starting...");
+	
+	// ----- GPS Setup ----- //
+	GPS_SERIAL.begin(GPS_BAUDRATE);
+	
+	delay(1000);
+	
+	// Set up the APRS module
+	aprs_setup(50, // number of preamble flags to send
+		PTT_PIN, // Use PTT pin
+		100, // ms to wait after PTT to transmit
+		0, 0 // No VOX ton
+	);
+}
 
 // Main loop, run repeatedly
 void loop()
@@ -140,9 +140,22 @@ void loop()
 	while (GPS_SERIAL.available() > 0)
 		gps.encode(GPS_SERIAL.read());
 	
+	// Debug: Also read from USB Serial
+	while (Serial.available() > 0)
+		gps.encode(Serial.read());
+	
 	// GPS Debug logging
 	if (gps.altitude.isUpdated()) {
 		gotGPS = true; // @TODO: Should really check to see if the location data is still valid
+		Serial.printf("Location: %f, %f altitude %f\r\n",
+			gps.location.lat(), gps.location.lng(), gps.altitude.meters());
+	} else {
+		Serial.print("No GPS ");
+		Serial.println(gps.charsProcessed());
+		Serial.print("Pass: ");
+		Serial.print(gps.passedChecksum());
+		Serial.print(" Fail: ");
+		Serial.println(gps.failedChecksum());
 		Serial.printf("Location: %f, %f altitude %f\r\n",
 			gps.location.lat(), gps.location.lng(), gps.altitude.meters());
 	}
