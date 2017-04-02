@@ -160,8 +160,8 @@ void loop()
 			gps.location.lat(), gps.location.lng(), gps.altitude.meters());
 	}
 	
-	if (gotGPS && timeOfAPRS + 60000 < millis()) {
-		//broadcastLocation(gps, "HELLO");
+	if (gotGPS && timeOfAPRS + 1000 < millis()) {
+		broadcastLocation(gps, "HELLO");
 		timeOfAPRS = millis();
 	}
 }
