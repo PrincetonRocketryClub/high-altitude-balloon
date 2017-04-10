@@ -24,6 +24,9 @@
 // TinyGPSPlus from http://arduiniana.org/libraries/tinygpsplus/
 #include "TinyGPS++.h"
 
+// Ublox configuration code
+#include "ublox.h"
+
 // ----- Pin Definitions ----- //
 #define PTT_PIN 11 // Push to talk pin
 #define THERMISTOR_PIN 17 // Thermistor Analog Input
@@ -114,7 +117,7 @@ void broadcastLocation(TinyGPSPlus &gps, char *comment)
 	aprs_send(addresses, nAddresses, strbuf);
 }
 
-// Setup code run once on startup
+// ----- Setup Code (Run on Startup) ----- //
 void setup()
 {
 	Serial.begin(19200); // For debugging output over the USB port
@@ -133,7 +136,7 @@ void setup()
 	);
 }
 
-// Main loop, run repeatedly
+// -----  Main loop (run repeatedly) ----- //
 void loop()
 {
 	// Read in new GPS data if available
