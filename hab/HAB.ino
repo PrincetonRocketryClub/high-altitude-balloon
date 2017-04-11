@@ -28,7 +28,7 @@
 #include "ublox.h"
 
 // ----- Pin Definitions ----- //
-#define PTT_PIN 11 // Push to talk pin
+#define PTT_PIN 13 // Push to talk pin
 #define THERMISTOR_PIN 17 // Thermistor Analog Input
 
 #define GPS_SERIAL Serial4 // GPS Serial port
@@ -125,7 +125,9 @@ void setup()
 	
 	// ----- GPS Setup ----- //
 	GPS_SERIAL.begin(GPS_BAUDRATE);
-	
+	Serial.println("Configuring NEMA talker ID to GP");
+	sendConfig(UBLOX_SET_NMEA_TALKER_GP);
+		//Serial.println("Ublox Config error! Retrying...");
 	delay(1000);
 	
 	// Set up the APRS module
@@ -140,8 +142,11 @@ void setup()
 void loop()
 {
 	// Read in new GPS data if available
-	while (GPS_SERIAL.available() > 0)
-		gps.encode(GPS_SERIAL.read());
+	while (GPS_SERIAL.available() > 0) {
+		char readbyte = GPS_SERIAL.read();
+		Serial.print(readbyte);
+		gps.encode(readbyte);
+	}
 	
 	// Debug: Also read from USB Serial
 	while (Serial.available() > 0)
@@ -153,6 +158,7 @@ void loop()
 		Serial.printf("Location: %f, %f altitude %f\r\n",
 			gps.location.lat(), gps.location.lng(), gps.altitude.meters());
 	} else {
+		/*
 		Serial.print("No GPS ");
 		Serial.println(gps.charsProcessed());
 		Serial.print("Pass: ");
@@ -161,6 +167,7 @@ void loop()
 		Serial.println(gps.failedChecksum());
 		Serial.printf("Location: %f, %f altitude %f\r\n",
 			gps.location.lat(), gps.location.lng(), gps.altitude.meters());
+		*/
 	}
 	
 	if (gotGPS && timeOfAPRS + 1000 < millis()) {

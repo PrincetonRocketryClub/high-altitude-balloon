@@ -30,6 +30,7 @@
 
 #define INTERRUPT_RATE 8  // in Microseconds
 #define PLAYBACK_RATE (1000000.0f / INTERRUPT_RATE)     // In Hertz
+#define DAC_PIN A22
 
 // 1200 Baud settings
 #define BAUD_RATE 1200.0f
@@ -172,7 +173,7 @@ inline uint16_t afsk_read_sample(const uint16_t * const sine_table,
 
 inline void afsk_output_sample(uint16_t b)
 {
-  analogWrite(A14, b);
+  analogWrite(DAC_PIN, b);
 }
 
 void afsk_timer_stop()
@@ -306,7 +307,7 @@ void afsk_start()
     // Key the radio
     // Configure pins
     pinMode(pttPin, OUTPUT);
-    digitalWrite(pttPin, LOW);
+    digitalWrite(pttPin, HIGH);
     delay(pttDelay);
   }
 

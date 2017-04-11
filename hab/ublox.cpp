@@ -1,3 +1,9 @@
+#include <stdint.h>
+#include <WProgram.h>
+#include "ublox.h"
+
+#define GPS_SERIAL Serial4
+
 // GPS Mode 0 (Low altitude, Portable)
 uint8_t UBLOX_SET_GPS_MODE_0[] = {
 	0xB5, 0x62, 0x06, 0x24, 0x24, 0x00, 0xFF, 0xFF, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x10,
@@ -43,14 +49,16 @@ uint8_t UBLOX_SET_PM2_10SEC[] = {
 };
 
 // Sends the given config message to the Ublox receiver
-bool sendConfig(uint8_t* msg) {
+int sendConfig(uint8_t* msg) {
 	// Clean serial stream, activate UBC
-	Serial4.flush();
-	Serial4.write(0xFF);
+	GPS_SERIAL.flush();
+	GPS_SERIAL.write(0xFF);
+	GPS_SERIAL.flush();
 	delay(500);
 	
 	// Write the message
-	Serial.write(msg, sizeof(msg)/sizeof(uint8_t));
+	GPS_SERIAL.write(msg, sizeof(msg)/sizeof(uint8_t));
+	GPS_SERIAL.flush();
 	
 	// Verify ack packet
 	unsigned long startTime = millis();
@@ -58,50 +66,50 @@ bool sendConfig(uint8_t* msg) {
 	uint8_t inbyte = 0;
 	
 	while (millis() - startTime < 3000) {
-		while (Serial.available()) {
+		while (GPS_SERIAL.available()) {
 			// Get next ACK byte
-			inbyte = Serial.read();
-			
+			inbyte = GPS_SERIAL.read();
 			// Check if byte is correct
+			Serial.println(inbyte, HEX);
 			switch (byteCount) {
 			case 0:
 				if (inbyte != 0xB5) {
-					return false;
+					return -1;
 				}
 				break;
 			case 1:
 				if (inbyte != 0x62) {
-					return false;
+					return -1;
 				}
 				break;
 			case 2:
 				if (inbyte != 0x05) {
-					return false;
+					return -1;
 				}
 				break;
 			case 3:
 				if (inbyte != 0x01) {
-					return false;
+					return -1;
 				}
 				break;
 			case 4:
 				if (inbyte != 0x02) {
-					return false;
+					return -1;
 				}
 				break;
 			case 5:
 				if (inbyte != 0x00) {
-					return false;
+					return -1;
 				}
 				break;
 			case 6:
 				if (inbyte != msg[2]) {
-					return false;
+					return -1;
 				}
 				break;
 			case 7:
 				if (inbyte != msg[3]) {
-					return false;
+					return -1;
 				}
 				break;
 			// Don't worry about checksums
@@ -110,15 +118,15 @@ bool sendConfig(uint8_t* msg) {
 				break;
 			default:
 				Serial.println("ERROR: Ublox config invalid ACK packet byteCount");
-				return false;
+				return -1;
 			}
 			byteCount++;
 			// Entire ACK received
 			if (byteCount > 9) {
-				return true;
+				return 0;
 			}
 		}
 	}
 	Serial.println("ERROR: Ublox config timeout");
-	return false;
+	return -2;
 }
