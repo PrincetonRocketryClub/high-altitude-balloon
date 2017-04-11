@@ -124,6 +124,7 @@ void setup()
 	Serial.println("Starting...");
 	
 	// ----- GPS Setup ----- //
+	delay(1500);
 	GPS_SERIAL.begin(GPS_BAUDRATE);
 	Serial.println("Configuring NEMA talker ID to GP");
 	sendConfig(UBLOX_SET_NMEA_TALKER_GP);
