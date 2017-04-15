@@ -102,6 +102,7 @@ I2 | Interrupt 2 | NC
 ### Datasheets
 - [Adafruit](https://www.adafruit.com/product/372)
 - [Tutorial](https://learn.adafruit.com/thermistor/using-a-thermistor)
+- [Lookup Table](https://cdn-shop.adafruit.com/datasheets/103_3950_lookuptable.pdf)
 
 Hook it up with a 10k resistor in a voltage divider setup, read with ADC. Connected to ADC17
 
