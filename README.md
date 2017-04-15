@@ -41,7 +41,8 @@ Pin Label | Functionality | Connection
 ### Software
 Outputs NEMA strings over serial, so should integrate with Trackuino's code nicely. Might have to do some configuration via UART. See page 175 of protocol spec for NMEA config. 
 
-Config tutorial: http://ava.upuaut.net/?p=738
+Config example code: http://playground.arduino.cc/UBlox/GPS
+Other tutorial: http://ava.upuaut.net/?p=738
 
 The settings we'll need:
 - Set non-GPS source's ID's to GPGGA for compatibility
