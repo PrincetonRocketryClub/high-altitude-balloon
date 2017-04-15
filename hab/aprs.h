@@ -25,7 +25,7 @@
 #ifndef __APRS_H__
 #define __APRS_H__
 
-#include "TinyGPS++.h"
+#include "TinyGPS.h"
 
 struct PathAddress
 {

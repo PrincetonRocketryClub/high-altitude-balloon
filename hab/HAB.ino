@@ -22,10 +22,10 @@
 #include "aprs.h"
 
 // TinyGPSPlus from http://arduiniana.org/libraries/tinygpsplus/
-#include "TinyGPS++.h"
+#include "TinyGPS.h"
 
-// Sparkfun BMP180 Library
-#include "SFE_BMP180.h"
+// Adafruit BMP180 Library
+#include "adafruit_BMP085.h"
 
 // Ublox configuration code
 #include "ublox.h"
@@ -68,6 +68,7 @@ struct PathAddress addresses[] = {
 };
 
 TinyGPSPlus gps; // GPS NEMA string decoder
+Adafruit_BMP085 bmp180; // BMP180 Temperature/Pressure sensor
 
 uint32_t timeOfAPRS = 0; // Time of last APRS transmission
 uint32_t timeLogging = 0; // Time of last logging output
@@ -146,7 +147,13 @@ void setup()
 		Serial.println("Checksum mismatch, retrying...");
 	}
 	
-	delay(1000);
+	// ----- BMP180 Setup ----- //
+	Serial.println("----- BMP180 SETUP -----");
+	if (bmp180.begin()) {
+		Serial.println("BMP180 Setup Successful");
+	} else {
+		Serial.println("BMP180 Not Found");
+	}
 	
 	// ----- APRS Setup ----- //
 	Serial.println("----- APRS SETUP -----");
@@ -172,7 +179,7 @@ void loop()
 	// Read in new GPS data if available
 	while (GPS_SERIAL.available() > 0) {
 		char readbyte = GPS_SERIAL.read();
-		Serial.print(readbyte);
+		//Serial.print(readbyte);
 		gps.encode(readbyte);
 	}
 	
@@ -204,6 +211,13 @@ void loop()
 		Serial.println("Initializing APRS Transmission");
 		broadcastLocation(gps, "HELLO");
 		timeOfAPRS = millis();
+	}
+	
+	if (millis() - timeLogging > LOGGINGPERIOD) {
+		Serial.println("Logging");
+		Serial.printf("Temperature: %fC, Pressure %d Pa\r\n", 
+			bmp180.readTemperature(), bmp180.readPressure());
+		timeLogging = millis();
 	}
 }
 

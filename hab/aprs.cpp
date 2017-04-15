@@ -29,7 +29,7 @@
 #include "afsk.h"
 #include "ax25.h"
 #include "aprs.h"
-#include "TinyGPS++.h"
+#include "TinyGPS.h"
 
 #define MAXSENDBUFFER 500
 
