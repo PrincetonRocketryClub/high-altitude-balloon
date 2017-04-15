@@ -24,6 +24,9 @@
 // TinyGPSPlus from http://arduiniana.org/libraries/tinygpsplus/
 #include "TinyGPS++.h"
 
+// Sparkfun BMP180 Library
+#include "SFE_BMP180.h"
+
 // Ublox configuration code
 #include "ublox.h"
 
@@ -50,6 +53,9 @@
 
 // ----- Misc Constants ----- //
 #define MAXSENDBUFFER 500 // Used to allocate a static buffer on the stack to build the AX25 buffer
+#define APRSPERIOD 5000
+#define LOGGINGPERIOD 2000
+
 
 // ===== GLOBAL VARIABLES ==== //
 char strbuf[MAXSENDBUFFER] = {};
@@ -63,8 +69,8 @@ struct PathAddress addresses[] = {
 
 TinyGPSPlus gps; // GPS NEMA string decoder
 
-uint32_t timeOfAPRS = 0; // Tracks time of last APRS transmission
-bool gotGPS = false; // Flag if a valid GPS fix has been received
+uint32_t timeOfAPRS = 0; // Time of last APRS transmission
+uint32_t timeLogging = 0; // Time of last logging output
 
 // ===== FUNCTIONS ===== //
 
@@ -127,25 +133,37 @@ void setup()
 	Serial.println("Starting...");
 	
 	// ----- GPS Setup ----- //
-	delay(1500);
+	Serial.println("----- GPS SETUP -----");
 	GPS_SERIAL.begin(GPS_BAUDRATE);
+	
 	Serial.println("Configuring NEMA talker ID to GP");
 	sendConfig(UBLOX_SET_NMEA_TALKER_GP, UBLOX_SET_NMEA_TALKER_GP_LEN);
-	Serial.println("Configuring 2Hz refresh rate");
-	sendConfig(UBLOX_SET_PM2_2SEC, UBLOX_SET_PM2_2SEC_LEN);
+	
+	while (ublox_setRate(2000) == -1){
+		Serial.println("Checksum mismatch, retrying...");
+	}
+	while (ublox_setNavMode(NAVMODE_LOW_PORTABLE) == -1){
+		Serial.println("Checksum mismatch, retrying...");
+	}
+	
 	delay(1000);
 	
 	// ----- APRS Setup ----- //
+	Serial.println("----- APRS SETUP -----");
 	aprs_setup(50, // number of preamble flags to send
 		PTT_PIN, // Use PTT pin
 		100, // ms to wait after PTT to transmit
 		0, 0 // No VOX ton
 	);
 	
+	Serial.println("===== SETUP COMPLETE =====");
+	
 	// ----- Test REMOVE BEFORE LAUNCH ----- //
+	/*
 	char* test_gps = "$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,*47\n";
 	for (int i = 0; i < 67; i++)
 		gps.encode(test_gps[i]);
+	*/
 }
 
 // -----  Main loop (run repeatedly) ----- //
@@ -163,10 +181,12 @@ void loop()
 		gps.encode(Serial.read());
 	
 	// GPS Debug logging
-	if (gps.altitude.isUpdated()) {
-		gotGPS = true; // @TODO: Should really check to see if the location data is still valid
+	if ((gps.location.isUpdated() || gps.satellites.isUpdated()) && gps.time.value() != 0) {
+		Serial.printf("\r\nGPS Update %d:%d:%d T=+%ul\r\n", 
+			gps.time.hour(), gps.time.minute(), gps.time.second(), millis());
 		Serial.printf("Location: %f, %f altitude %f\r\n",
 			gps.location.lat(), gps.location.lng(), gps.altitude.meters());
+		Serial.printf("Satellites: %d\r\n", gps.satellites.value());
 	} else {
 		/*
 		Serial.print("No GPS ");
@@ -180,7 +200,8 @@ void loop()
 		*/
 	}
 	
-	if (gotGPS && timeOfAPRS + 1000 < millis()) {
+	if (gps.location.isValid() && millis() - timeOfAPRS > APRSPERIOD) {
+		Serial.println("Initializing APRS Transmission");
 		broadcastLocation(gps, "HELLO");
 		timeOfAPRS = millis();
 	}
