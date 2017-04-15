@@ -1,5 +1,3 @@
-// Example program for the APRS code in this repository
-
 /*
 * Copyright (C) 2014 by Richard Nash (KC3ARY)
 * 
@@ -32,7 +30,7 @@
 
 // ----- Pin Definitions ----- //
 #define PTT_PIN 13 // Push to talk pin
-#define THERMISTOR_PIN 17 // Thermistor Analog Input
+#define THERMISTOR_PIN 36 // Thermistor Analog Input
 
 #define GPS_SERIAL Serial4 // GPS Serial port
 #define GPS_BAUDRATE 9600
@@ -214,9 +212,12 @@ void loop()
 	}
 	
 	if (millis() - timeLogging > LOGGINGPERIOD) {
-		Serial.println("Logging");
+		Serial.printf("Logging T = +%ul", millis()/1000);
 		Serial.printf("Temperature: %fC, Pressure %d Pa\r\n", 
 			bmp180.readTemperature(), bmp180.readPressure());
+		Serial.print("Thermistor ADC: ");
+		int value = analogRead(THERMISTOR_PIN);
+		Serial.println(value);
 		timeLogging = millis();
 	}
 }
