@@ -47,7 +47,7 @@
 // Symbol Table: '/' is primary table '\' is secondary table
 #define SYMBOL_TABLE '/' 
 // Primary Table Symbols: /O=balloon, /-=House, /v=Blue Van, />=Red Car
-#define SYMBOL_CHAR '0'
+#define SYMBOL_CHAR 'O'
 
 // ----- Misc Constants ----- //
 #define MAXSENDBUFFER 500 // Used to allocate a static buffer on the stack to build the AX25 buffer
