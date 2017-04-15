@@ -92,6 +92,7 @@ void broadcastLocation(TinyGPSPlus &gps, char *comment)
 	}
 	
 	// For debugging print out the path
+	/*
 	Serial.print("APRS(");
 	Serial.print(nAddresses);
 	Serial.print("): ");
@@ -106,11 +107,13 @@ void broadcastLocation(TinyGPSPlus &gps, char *comment)
 	Serial.print(SYMBOL_TABLE);
 	Serial.print(SYMBOL_CHAR);
 	Serial.println();
+	*/
 	
 	// Package the packet
 	createAPRSStr(strbuf, gps, SYMBOL_TABLE, SYMBOL_CHAR, comment);
 	
 	// Print for debugging
+	Serial.println("APRS packet:");
 	Serial.println(strbuf);
 	
 	// Send the packet
@@ -127,16 +130,22 @@ void setup()
 	delay(1500);
 	GPS_SERIAL.begin(GPS_BAUDRATE);
 	Serial.println("Configuring NEMA talker ID to GP");
-	sendConfig(UBLOX_SET_NMEA_TALKER_GP);
-		//Serial.println("Ublox Config error! Retrying...");
+	sendConfig(UBLOX_SET_NMEA_TALKER_GP, UBLOX_SET_NMEA_TALKER_GP_LEN);
+	Serial.println("Configuring 2Hz refresh rate");
+	sendConfig(UBLOX_SET_PM2_2SEC, UBLOX_SET_PM2_2SEC_LEN);
 	delay(1000);
 	
-	// Set up the APRS module
+	// ----- APRS Setup ----- //
 	aprs_setup(50, // number of preamble flags to send
 		PTT_PIN, // Use PTT pin
 		100, // ms to wait after PTT to transmit
 		0, 0 // No VOX ton
 	);
+	
+	// ----- Test REMOVE BEFORE LAUNCH ----- //
+	char* test_gps = "$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,*47\n";
+	for (int i = 0; i < 67; i++)
+		gps.encode(test_gps[i]);
 }
 
 // -----  Main loop (run repeatedly) ----- //

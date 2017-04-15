@@ -71,7 +71,7 @@ int createAPRSStr( char * buf, TinyGPSPlus &gps, const char symbolTableIndicator
 	index++;
 	
 	// Timestamp HHMMSS format, append h to indicate HMS format
-	index += snprintf(&buf[index], sizeof(buf) - index, "%02u%02u%02uh", (unsigned int) gps.time.hour(),
+	index += snprintf(&buf[index], MAXSENDBUFFER - index, "%02u%02u%02uh", (unsigned int) gps.time.hour(),
 		(unsigned int) gps.time.minute(), (unsigned int) gps.time.second());
 	
 	// ----- Position Data ----- //
@@ -79,14 +79,14 @@ int createAPRSStr( char * buf, TinyGPSPlus &gps, const char symbolTableIndicator
 	// Example location block: "4903.50N/07201.75W-", using Symbol Table ID '/' and Code '-'
 	
 	// Latitude DDMM.MM
-	index += latToStr(&buf[index], sizeof(buf) - index, gps.location.rawLat());
+	index += latToStr(&buf[index], MAXSENDBUFFER - index, gps.location.rawLat());
 	
 	// Display Symbol Table ID
 	buf[index] = symbolTableIndicator;
 	index++;
 	
 	// Longitude DDDMM.MM
-	index += lonToStr(&buf[index], sizeof(buf) - index, gps.location.rawLng());
+	index += lonToStr(&buf[index], MAXSENDBUFFER - index, gps.location.rawLng());
 	
 	// Display Symbol Code
 	buf[index] = symbol;
@@ -94,17 +94,19 @@ int createAPRSStr( char * buf, TinyGPSPlus &gps, const char symbolTableIndicator
 	
 	// ----- APRS Data Extension CSE + '/' + SPD (7b) ----- //
 	// Heading (degrees, 3b) / Speed (knots, 3b)
-	index += snprintf(&buf[index], sizeof(buf) - index, "%03u/%03d", 
+	index += snprintf(&buf[index], MAXSENDBUFFER - index, "%03u/%03d", 
 		(unsigned int)gps.course.deg(), (unsigned int) gps.speed.knots());
 	
 	// Altitude /A=aaaaaa, must be in feet. 
-	index += snprintf(&buf[index], sizeof(buf) - index, "/A=%06d", (unsigned int)gps.altitude.feet());
+	index += snprintf(&buf[index], MAXSENDBUFFER - index, "/A=%06d", (unsigned int)gps.altitude.feet());
 	
 	// ----- Additional Comments ----- //
 	
 	// Extra comments
-	strncat(&buf[index], comment, sizeof(buf) - index);
+	strncat(&buf[index], comment, MAXSENDBUFFER - index);
 	index += sizeof(comment);
+	
+	Serial.println(buf);
 	
 	// Don't forget to count ending '\0'
 	return index;
