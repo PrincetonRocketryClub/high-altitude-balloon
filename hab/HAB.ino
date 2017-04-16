@@ -120,10 +120,6 @@ void broadcastLocation(TinyGPSPlus &gps, char *comment)
 	// Package the packet
 	createAPRSStr(strbuf, gps, SYMBOL_TABLE, SYMBOL_CHAR, comment);
 	
-	// Print for debugging
-	Serial.println("APRS packet:");
-	Serial.println(strbuf);
-	
 	// Send the packet
 	aprs_send(addresses, nAddresses, strbuf);
 }
@@ -199,7 +195,7 @@ void loop()
 	// Read in new GPS data if available
 	while (GPS_SERIAL.available() > 0) {
 		char readbyte = GPS_SERIAL.read();
-		//Serial.print(readbyte);
+		Serial.print(readbyte);
 		gps.encode(readbyte);
 	}
 	

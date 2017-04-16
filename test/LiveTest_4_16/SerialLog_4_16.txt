@@ -1,0 +1,960 @@
+Starting...
+----- GPS SETUP -----
+Configuring NEMA talker ID to GP
+Config success!
+Setting period: 2000
+Config success!
+Setting navmode: 0
+Config success!
+----- BMP180 SETUP -----
+BMP180 Setup Successful
+----- APRS SETUP -----
+----- SD SETUP -----
+SD init succesful
+data.csv already exists
+===== SETUP COMPLETE =====
+$GPGGA,223057.50,4020.77286,N,07439.42832,W,1,05,3.16,6.0,M,-34.$GPGGA,223104.00,Logging T = +8
+Temperature: 27.1C, Pressure 100326 Pa
+Thermistor ADC: 481
+,,,,0,04,10.17,,,,,,*63
+
+GPS Update 22:31:4 T=+8375l
+Location: 40.346210, -74.657143 altitude 6.700000
+Satellites: 4
+$GPGGA,223106.00,,,,,0,04,10.21,,,,,,*64
+
+GPS Update 22:31:6 T=+10315l
+Location: 40.346210, -74.657143 altitude 6.700000
+Satellites: 4
+
+Logging T = +10
+Temperature: 27.2C, Pressure 100331 Pa
+Thermistor ADC: 481
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223106h4003.59N/07400.77WO000/000/A=00002111,27.1C,100326,481
+APRS packet:
+/223106h4003.59N/07400.77WO000/000/A=00002111,27.1C,100326,481
+$GPGGA,223108.00,,,,,0,04,10.25,,,,,,*6E
+
+GPS Update 22:31:8 T=+12409l
+Location: 40.346210, -74.657143 altitude 6.700000
+Satellites: 4
+Logging T = +12
+Temperature: 27.2C, Pressure 100337 Pa
+Thermistor ADC: 481
+$GPGGA,223110.00,,,,,0,04,10.29,,,,,,*6B
+
+GPS Update 22:31:10 T=+14314l
+Location: 40.346210, -74.657143 altitude 6.700000
+Satellites: 4
+
+Logging T = +14
+Temperature: 27.2C, Pressure 100335 Pa
+Thermistor ADC: 481
+$GPGGA,223112.00,,,,,0,04,10.33,,,,,,*62
+
+GPS Update 22:31:12 T=+16315l
+Location: 40.346210, -74.657143 altitude 6.700000
+Satellites: 4
+
+Logging T = +16
+Temperature: 27.1C, Pressure 100337 Pa
+Thermistor ADC: 481
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223112h4003.59N/07400.77WO000/000/A=00002117,27.2C,100333,481
+APRS packet:
+/223112h4003.59N/07400.77WO000/000/A=00002117,27.2C,100333,481
+$GPGGA,223114.00,,,,,0,04,10.37,,,,,,*60
+
+GPS Update 22:31:14 T=+18617l
+Location: 40.346210, -74.657143 altitude 6.700000
+Satellites: 4
+Logging T = +18
+Temperature: 27.1C, Pressure 100332 Pa
+Thermistor ADC: 481
+$GPGGA,223116.00,,,,,0,04,10.41,,,,,,*63
+
+GPS Update 22:31:16 T=+20314l
+Location: 40.346210, -74.657143 altitude 6.700000
+Satellites: 4
+
+Logging T = +20
+Temperature: 27.1C, Pressure 100326 Pa
+Thermistor ADC: 481
+$GPGGA,223118.00,,,,,0,04,10.45,,,,,,*69
+
+GPS Update 22:31:18 T=+22314l
+Location: 40.346210, -74.657143 altitude 6.700000
+Satellites: 4
+
+Logging T = +22
+Temperature: 27.2C, Pressure 100335 Pa
+Thermistor ADC: 481
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223118h4003.59N/07400.77WO000/000/A=00002123,27.1C,100332,482
+APRS packet:
+/223118h4003.59N/07400.77WO000/000/A=00002123,27.1C,100332,482
+$GPGGA,223120.00,,,,,0,04,10.49,,,,,,*6E
+
+GPS Update 22:31:20 T=+24825l
+Location: 40.346210, -74.657143 altitude 6.700000
+Satellites: 4
+Logging T = +24
+Temperature: 27.1C, Pressure 100334 Pa
+Thermistor ADC: 482
+$GPGGA,223122.00,4020.77358,N,07439.42836,W,1,05,3.13,6.3,M,-34.5,M,,*68
+
+GPS Update 22:31:22 T=+26350l
+Location: 40.346226, -74.657143 altitude 6.300000
+Satellites: 5
+
+Logging T = +27
+Temperature: 27.1C, Pressure 100331 Pa
+Thermistor ADC: 481
+$GPGGA,223124.00,4020.77254,N,07439.42878,W,1,05,3.13,6.5,M,-34.5,M,,*6F
+
+GPS Update 22:31:24 T=+28351l
+Location: 40.346210, -74.657143 altitude 6.500000
+Satellites: 5
+
+Logging T = +29
+Temperature: 27.1C, Pressure 100332 Pa
+Thermistor ADC: 481
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223124h4003.59N/07400.77WO000/000/A=00002129,27.1C,100337,481
+APRS packet:
+/223124h4003.59N/07400.77WO000/000/A=00002129,27.1C,100337,481
+$GPGGA,223126.00,4020.77204,N,07439.42901,W,1,05,3.13,7.0,M,-34Logging T = +31
+Temperature: 27.1C, Pressure 100332 Pa
+Thermistor ADC: 481
+$GPGGA,223128.00,4020.77194,N,07439.42916,W,1,05,3.13,7.4,M,-34.5,M,,*65
+
+GPS Update 22:31:28 T=+32352l
+Location: 40.346199, -74.657150 altitude 7.400000
+Satellites: 5
+
+Logging T = +33
+Temperature: 27.1C, Pressure 100334 Pa
+Thermistor ADC: 481
+$GPGGA,223130.00,4020.77187,N,07439.42933,W,1,05,3.13,8.2,M,-34.5,M,,*60
+
+GPS Update 22:31:30 T=+34351l
+Location: 40.346199, -74.657158 altitude 8.200000
+Satellites: 5
+
+Logging T = +35
+Temperature: 27.1C, Pressure 100335 Pa
+Thermistor ADC: 481
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223130h4003.59N/07400.77WO000/000/A=00002636,27.2C,100337,481
+APRS packet:
+/223130h4003.59N/07400.77WO000/000/A=00002636,27.2C,100337,481
+$GPGGA,223132.00,4020.77199,N,07439.42943,W,1,04,8.78,9.4,M,-34Logging T = +37
+Temperature: 27.1C, Pressure 100336 Pa
+Thermistor ADC: 482
+$GPGGA,223134.00,4020.77203,N,07439.42911,W,1,04,8.77,10.7,M,-34.5,M,,*5F
+
+GPS Update 22:31:34 T=+38348l
+Location: 40.346199, -74.657150 altitude 10.700000
+Satellites: 4
+
+Logging T = +39
+Temperature: 27.1C, Pressure 100333 Pa
+Thermistor ADC: 481
+$GPGGA,223136.00,4020.77279,N,07439.42995,W,1,03,2.48,5.2,M,-34.5,M,,*6C
+
+GPS Update 22:31:36 T=+40350l
+Location: 40.346214, -74.657166 altitude 5.200000
+Satellites: 3
+
+Logging T = +41
+Temperature: 27.1C, Pressure 100339 Pa
+Thermistor ADC: 481
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223136h4003.59N/07400.77WO000/000/A=00001742,27.1C,100341,481
+APRS packet:
+/223136h4003.59N/07400.77WO000/000/A=00001742,27.1C,100341,481
+$GPGGA,223138.00,4020.77342,N,07439.42985,W,1,03,2.48,3.9,M,-34Logging T = +43
+Temperature: 27.1C, Pressure 100330 Pa
+Thermistor ADC: 481
+$GPGGA,223140.00,4020.77397,N,07439.43018,W,1,04,3.49,3.8,M,-34.5,M,,*6A
+
+GPS Update 22:31:40 T=+44347l
+Location: 40.346233, -74.657173 altitude 3.800000
+Satellites: 4
+
+Logging T = +45
+Temperature: 27.1C, Pressure 100332 Pa
+Thermistor ADC: 481
+$GPGGA,223142.00,4020.77606,N,07439.43022,W,1,03,4.76,2.7,M,-34.5,M,,*6E
+
+GPS Update 22:31:42 T=+46348l
+Location: 40.346268, -74.657173 altitude 2.700000
+Satellites: 3
+
+Logging T = +47
+Temperature: 27.2C, Pressure 100322 Pa
+Thermistor ADC: 481
+$GPGGA,223144.00,,,,,0,04,11.01,,,,,,*61
+
+GPS Update 22:31:44 T=+48313l
+Location: 40.346268, -74.657173 altitude 2.700000
+Satellites: 4
+
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223144h4003.59N/07400.77WO000/000/A=00000848,27.2C,100330,481
+APRS packet:
+/223144h4003.59N/07400.77WO000/000/A=00000848,27.2C,100330,481
+Logging T = +50
+Temperature: 27.2C, Pressure 100341 Pa
+Thermistor ADC: 480
+$GPGGA,223146.00,,,,,0,04,11.06,,,,,,*64
+
+GPS Update 22:31:46 T=+50314l
+Location: 40.346268, -74.657173 altitude 2.700000
+Satellites: 4
+
+Logging T = +52
+Temperature: 27.1C, Pressure 100330 Pa
+Thermistor ADC: 480
+$GPGGA,223148.00,,,,,0,04,11.11,,,,,,*6C
+
+GPS Update 22:31:48 T=+52315l
+Location: 40.346268, -74.657173 altitude 2.700000
+Satellites: 4
+
+Logging T = +54
+Temperature: 27.1C, Pressure 100334 Pa
+Thermistor ADC: 480
+$GPGGA,223150.00,,,,,0,04,11.15,,,,,,*61
+
+GPS Update 22:31:50 T=+54315l
+Location: 40.346268, -74.657173 altitude 2.700000
+Satellites: 4
+
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223150h4003.59N/07400.77WO000/000/A=00000854,27.1C,100330,481
+APRS packet:
+/223150h4003.59N/07400.77WO000/000/A=00000854,27.1C,100330,481
+$GPGGA,223152.00,,Logging T = +56
+Temperature: 27.1C, Pressure 100332 Pa
+Thermistor ADC: 480
+,,,0,04,11.20,,,,,,*65
+
+GPS Update 22:31:52 T=+56377l
+Location: 40.346268, -74.657173 altitude 2.700000
+Satellites: 4
+$GPGGA,223154.00,,,,,0,04,11.25,,,,,,*66
+
+GPS Update 22:31:54 T=+58314l
+Location: 40.346268, -74.657173 altitude 2.700000
+Satellites: 4
+
+Logging T = +58
+Temperature: 27.2C, Pressure 100334 Pa
+Thermistor ADC: 480
+$GPGGA,223156.00,4020.77386,N,07439.43035,W,1,05,3.10,0.9,M,-34.5,M,,*6D
+
+GPS Update 22:31:56 T=+60347l
+Location: 40.346230, -74.657173 altitude 0.900000
+Satellites: 5
+
+Logging T = +60
+Temperature: 27.2C, Pressure 100333 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223156h4003.59N/07400.77WO000/000/A=00000260,27.2C,100330,480
+APRS packet:
+/223156h4003.59N/07400.77WO000/000/A=00000260,27.2C,100330,480
+$GPGGA,223158.00,4020.77397,N,07439.43041,W,1,05,3.10,1.1,M,-34.5,M,,*69
+
+GPS Update 22:31:58 T=+62351l
+Location: 40.346233, -74.657173 altitude 1.100000
+Satellites: 5
+
+Logging T = +62
+Temperature: 27.2C, Pressure 100338 Pa
+Thermistor ADC: 480
+$GPGGA,223200.00,4020.77390,N,07439.42998,W,1,05,3.10,1.1,M,-34.5,M,,*6C
+
+GPS Update 22:32:0 T=+64351l
+Location: 40.346233, -74.657166 altitude 1.100000
+Satellites: 5
+
+Logging T = +64
+Temperature: 27.1C, Pressure 100330 Pa
+Thermistor ADC: 480
+$GPGGA,223202.00,4020.77322,N,07439.42971,W,1,05,3.10,1.6,M,-34.5,M,,*67
+
+GPS Update 22:32:2 T=+66350l
+Location: 40.346222, -74.657166 altitude 1.600000
+Satellites: 5
+
+Logging T = +66
+Temperature: 27.2C, Pressure 100332 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223202h4003.59N/07400.77WO000/000/A=00000567,27.2C,100334,480
+APRS packet:
+/223202h4003.59N/07400.77WO000/000/A=00000567,27.2C,100334,480
+$GPGGA,223204.00,4020.77288,N,07439.42927,W,1,05,3.09,2.5,M,-34.5,M,,*6B
+
+GPS Update 22:32:4 T=+68351l
+Location: 40.346214, -74.657158 altitude 2.500000
+Satellites: 5
+
+Logging T = +68
+Temperature: 27.2C, Pressure 100334 Pa
+Thermistor ADC: 480
+$GPGGA,223206.00,4020.77314,N,07439.42890,W,1,05,3.09,3.7,M,-34.5,M,,*63
+
+GPS Update 22:32:6 T=+70351l
+Location: 40.346218, -74.657150 altitude 3.700000
+Satellites: 5
+
+Logging T = +70
+Temperature: 27.2C, Pressure 100333 Pa
+Thermistor ADC: 480
+$GPGGA,223208.00,4020.77365,N,07439.42869,W,1,05,3.09,5.1,M,-34.5,M,,*6D
+
+GPS Update 22:32:8 T=+72352l
+Location: 40.346226, -74.657143 altitude 5.100000
+Satellites: 5
+
+Logging T = +72
+Temperature: 27.2C, Pressure 100334 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223208h4003.59N/07400.77WO000/000/A=00001673,27.2C,100331,480
+APRS packet:
+/223208h4003.59N/07400.77WO000/000/A=00001673,27.2C,100331,480
+$GPGGA,223210.00,4020.77379,N,07439.42857,W,1,05,3.09,6.2,M,-34Logging T = +75
+Temperature: 27.2C, Pressure 100333 Pa
+Thermistor ADC: 479
+$GPGGA,223212.00,4020.77333,N,07439.42866,W,1,05,3.09,6.9,M,-34.5,M,,*61
+
+GPS Update 22:32:12 T=+76348l
+Location: 40.346222, -74.657143 altitude 6.900000
+Satellites: 5
+
+Logging T = +77
+Temperature: 27.2C, Pressure 100334 Pa
+Thermistor ADC: 479
+$GPGGA,223214.00,4020.77296,N,07439.42857,W,1,05,3.09,8.0,M,-34.5,M,,*6C
+
+GPS Update 22:32:14 T=+78349l
+Location: 40.346214, -74.657143 altitude 8.000000
+Satellites: 5
+
+Logging T = +79
+Temperature: 27.2C, Pressure 100332 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223214h4003.59N/07400.77WO000/000/A=00002679,27.2C,100336,480
+APRS packet:
+/223214h4003.59N/07400.77WO000/000/A=00002679,27.2C,100336,480
+$GPGGA,223216.00,4020.77294,N,07439.42792,W,1,05,3.08,10.5,M,-3Logging T = +81
+Temperature: 27.2C, Pressure 100335 Pa
+Thermistor ADC: 480
+$GPGGA,223218.00,4020.77339,N,07439.42740,W,1,05,3.08,11.8,M,-34.5,M,,*5C
+
+GPS Update 22:32:18 T=+82349l
+Location: 40.346222, -74.657120 altitude 11.800000
+Satellites: 5
+
+Logging T = +83
+Temperature: 27.2C, Pressure 100339 Pa
+Thermistor ADC: 480
+$GPGGA,223220.00,4020.77274,N,07439.42773,W,1,05,3.08,13.3,M,-34.5,M,,*56
+
+GPS Update 22:32:20 T=+84348l
+Location: 40.346210, -74.657127 altitude 13.300000
+Satellites: 5
+
+Logging T = +85
+Temperature: 27.2C, Pressure 100339 Pa
+Thermistor ADC: 479
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223220h4003.59N/07400.77WO000/000/A=00004385,27.2C,100338,480
+APRS packet:
+/223220h4003.59N/07400.77WO000/000/A=00004385,27.2C,100338,480
+$GPGGA,223222.00,4020.77210,N,07439.42634,W,1,05,3.08,18.0,M,-3Logging T = +87
+Temperature: 27.2C, Pressure 100335 Pa
+Thermistor ADC: 480
+$GPGGA,223224.00,4020.77185,N,07439.42523,W,1,05,3.08,20.7,M,-34.5,M,,*5C
+
+GPS Update 22:32:24 T=+88347l
+Location: 40.346199, -74.657089 altitude 20.700001
+Satellites: 5
+
+Logging T = +89
+Temperature: 27.2C, Pressure 100337 Pa
+Thermistor ADC: 480
+$GPGGA,223226.00,4020.77185,N,07439.42371,W,1,05,3.08,23.7,M,-34.5,M,,*5C
+
+GPS Update 22:32:26 T=+90351l
+Location: 40.346199, -74.657059 altitude 23.700001
+Satellites: 5
+
+Logging T = +91
+Temperature: 27.2C, Pressure 100335 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223226h4003.59N/07400.76WO000/000/A=00007791,27.2C,100331,480
+APRS packet:
+/223226h4003.59N/07400.76WO000/000/A=00007791,27.2C,100331,480
+$GPGGA,223228.00,4020.77136,N,07439.42405,W,1,05,3.07,27.3,M,-3Logging T = +93
+Temperature: 27.2C, Pressure 100326 Pa
+Thermistor ADC: 480
+$GPGGA,223230.00,4020.77086,N,07439.42470,W,1,04,6.30,30.6,M,-34.5,M,,*53
+
+GPS Update 22:32:30 T=+94345l
+Location: 40.346180, -74.657082 altitude 30.600000
+Satellites: 4
+
+Logging T = +95
+Temperature: 27.2C, Pressure 100331 Pa
+Thermistor ADC: 480
+$GPGGA,223232.00,4020.77049,N,07439.42523,W,1,04,6.30,32.9,M,-34.5,M,,*58
+
+GPS Update 22:32:32 T=+96346l
+Location: 40.346176, -74.657089 altitude 32.900002
+Satellites: 4
+
+Logging T = +98
+Temperature: 27.2C, Pressure 100333 Pa
+Thermistor ADC: 479
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223232h4003.59N/07400.77WO000/000/A=00010798,27.2C,100335,480
+APRS packet:
+/223232h4003.59N/07400.77WO000/000/A=00010798,27.2C,100335,480
+$GPGGA,223234.00,4020.76969,N,07439.42607,W,1,04,6.29,35.1,M,-3Logging T = +100
+Temperature: 27.2C, Pressure 100324 Pa
+Thermistor ADC: 479
+$GPGGA,223236.00,4020.76871,N,07439.42649,W,1,05,3.07,37.5,M,-34.5,M,,*58
+
+GPS Update 22:32:36 T=+100353l
+Location: 40.346146, -74.657104 altitude 37.500000
+Satellites: 5
+
+Logging T = +102
+Temperature: 27.2C, Pressure 100332 Pa
+Thermistor ADC: 480
+$GPGGA,223238.00,4020.76706,N,07439.42685,W,1,05,3.07,43.4,M,-34.5,M,,*5B
+
+GPS Update 22:32:38 T=+102352l
+Location: 40.346119, -74.657112 altitude 43.400002
+Satellites: 5
+
+$GPGGA,223240.00,4020.76636,N,074Logging T = +104
+Temperature: 27.2C, Pressure 100324 Pa
+Thermistor ADC: 480
+39.42773,W,1,05,3.06,43.5,M,-34.5,M,,*5E
+
+GPS Update 22:32:40 T=+104394l
+Location: 40.346107, -74.657127 altitude 43.500000
+Satellites: 5
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223240h4003.58N/07400.77WO000/000/A=000142104,27.2C,100332,480
+APRS packet:
+/223240h4003.58N/07400.77WO000/000/A=000142104,27.2C,100332,480
+$GPGGA,223242.00,4020.76631,N,07439.42820,W,1,05,3.06,44.4,M,-34.5,M,,*54
+
+GPS Update 22:32:42 T=+106350l
+Location: 40.346104, -74.657135 altitude 44.400002
+Satellites: 5
+
+Logging T = +106
+Temperature: 27.2C, Pressure 100325 Pa
+Thermistor ADC: 480
+$GPGGA,223244.00,4020.76496,N,07439.42857,W,1,05,3.06,49.0,M,-34.5,M,,*54
+
+GPS Update 22:32:44 T=+108351l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +108
+Temperature: 27.2C, Pressure 100331 Pa
+Thermistor ADC: 480
+$GPGGA,223246.00,,,,,0,05,3.06,,,,,,*55
+
+GPS Update 22:32:46 T=+110315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +110
+Temperature: 27.2C, Pressure 100336 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223246h4003.58N/07400.77WO000/000/A=000160110,27.2C,100331,481
+APRS packet:
+/223246h4003.58N/07400.77WO000/000/A=000160110,27.2C,100331,481
+$GPGGA,223248.00,,,,,0,05,3.06,,,,,,*5B
+
+GPS Update 22:32:48 T=+112317l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +112
+Temperature: 27.2C, Pressure 100331 Pa
+Thermistor ADC: 482
+$GPGGA,223250.00,,,,,0,05,3.06,,,,,,*52
+
+GPS Update 22:32:50 T=+114316l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +114
+Temperature: 27.2C, Pressure 100326 Pa
+Thermistor ADC: 482
+$GPGGA,223252.00,,,,,0,05,3.06,,,,,,*50
+
+GPS Update 22:32:52 T=+116323l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +116
+Temperature: 27.2C, Pressure 100324 Pa
+Thermistor ADC: 482
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223252h4003.58N/07400.77WO000/000/A=000160116,27.2C,100334,482
+APRS packet:
+/223252h4003.58N/07400.77WO000/000/A=000160116,27.2C,100334,482
+$GPGGA,223254.00,,,,,0,05,3.05,,,,,,*55
+
+GPS Update 22:32:54 T=+118315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +118
+Temperature: 27.2C, Pressure 100334 Pa
+Thermistor ADC: 482
+$GPGGA,223256.00,,,,,0,05,3.05,,,,,,*57
+
+GPS Update 22:32:56 T=+120315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +121
+Temperature: 27.2C, Pressure 100330 Pa
+Thermistor ADC: 482
+$GPGGA,223258.00,,,,,0,05,3.05,,,,,,*59
+
+GPS Update 22:32:58 T=+122315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +123
+Temperature: 27.2C, Pressure 100336 Pa
+Thermistor ADC: 482
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223258h4003.58N/07400.77WO000/000/A=000160123,27.2C,100335,483
+APRS packet:
+/223258h4003.58N/07400.77WO000/000/A=000160123,27.2C,100335,483
+$GPGGA,223300.00,,,,,0,05,3.05,,,,,,*55
+
+GPS Update 22:33:0 T=+124392l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+Logging T = +125
+Temperature: 27.2C, Pressure 100334 Pa
+Thermistor ADC: 482
+$GPGGA,223302.00,,,,,0,05,3.05,,,,,,*57
+
+GPS Update 22:33:2 T=+126314l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +127
+Temperature: 27.2C, Pressure 100340 Pa
+Thermistor ADC: 482
+$GPGGA,223304.00,,,,,0,05,3.05,,,,,,*51
+
+GPS Update 22:33:4 T=+128313l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +129
+Temperature: 27.2C, Pressure 100331 Pa
+Thermistor ADC: 482
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223304h4003.58N/07400.77WO000/000/A=000160129,27.2C,100337,482
+APRS packet:
+/223304h4003.58N/07400.77WO000/000/A=000160129,27.2C,100337,482
+$GPGGA,223306.00,,,,,0,05,3.05,,,,,,*53
+
+GPS Update 22:33:6 T=+130654l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+Logging T = +131
+Temperature: 27.2C, Pressure 100334 Pa
+Thermistor ADC: 481
+$GPGGA,223308.00,,,,,0,05,3.04,,,,,,*5C
+
+GPS Update 22:33:8 T=+132315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +133
+Temperature: 27.2C, Pressure 100326 Pa
+Thermistor ADC: 482
+$GPGGA,223310.00,,,,,0,05,3.04,,,,,,*55
+
+GPS Update 22:33:10 T=+134314l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +135
+Temperature: 27.2C, Pressure 100330 Pa
+Thermistor ADC: 482
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223310h4003.58N/07400.77WO000/000/A=000160135,27.2C,100339,482
+APRS packet:
+/223310h4003.58N/07400.77WO000/000/A=000160135,27.2C,100339,482
+$GPGGA,223312.00,,,,,0,05,3.04,,,,,,*57
+
+GPS Update 22:33:12 T=+136915l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+Logging T = +137
+Temperature: 27.2C, Pressure 100340 Pa
+Thermistor ADC: 481
+$GPGGA,223314.00,,,,,0,05,3.04,,,,,,*51
+
+GPS Update 22:33:14 T=+138315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +139
+Temperature: 27.2C, Pressure 100334 Pa
+Thermistor ADC: 481
+$GPGGA,223316.00,,,,,0,05,3.04,,,,,,*53
+
+GPS Update 22:33:16 T=+140312l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +141
+Temperature: 27.2C, Pressure 100334 Pa
+Thermistor ADC: 481
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223316h4003.58N/07400.77WO000/000/A=000160141,27.2C,100338,481
+APRS packet:
+/223316h4003.58N/07400.77WO000/000/A=000160141,27.2C,100338,481
+$GPGGA,223318.00,,,,,0,05,3.04,,,,,,*5D
+
+GPS Update 22:33:18 T=+143176l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+Logging T = +143
+Temperature: 27.2C, Pressure 100330 Pa
+Thermistor ADC: 481
+$GPGGA,223320.00,,,,,0,05,3.04,,,,,,*56
+
+GPS Update 22:33:20 T=+144311l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +146
+Temperature: 27.2C, Pressure 100335 Pa
+Thermistor ADC: 481
+$GPGGA,223322.00,,,,,0,05,3.03,,,,,,*53
+
+GPS Update 22:33:22 T=+146311l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +148
+Temperature: 27.2C, Pressure 100335 Pa
+Thermistor ADC: 481
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223322h4003.58N/07400.77WO000/000/A=000160148,27.2C,100334,481
+APRS packet:
+/223322h4003.58N/07400.77WO000/000/A=000160148,27.2C,100334,481
+$GPGGA,223324.00,,,,,0,05,3.03,,,,,,*55
+
+GPS Update 22:33:24 T=+149437l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+Logging T = +150
+Temperature: 27.2C, Pressure 100335 Pa
+Thermistor ADC: 480
+$GPGGA,223326.00,,,,,0,05,3.03,,,,,,*57
+
+GPS Update 22:33:26 T=+150314l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+$GPGGA,223328.00,,,,,0,05,3.03,,,,,Logging T = +152
+Temperature: 27.2C, Pressure 100334 Pa
+Thermistor ADC: 481
+,*59
+
+GPS Update 22:33:28 T=+152397l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+$GPGGA,223330.00,,,,,0,05,3.03,,,,,,*50
+
+GPS Update 22:33:30 T=+154314l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +154
+Temperature: 27.1C, Pressure 100338 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223330h4003.58N/07400.77WO000/000/A=000160154,27.2C,100333,481
+APRS packet:
+/223330h4003.58N/07400.77WO000/000/A=000160154,27.2C,100333,481
+$GPGGA,223332.00,,,,,0,05,3.03,,,,,,*52
+
+GPS Update 22:33:32 T=+156315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +156
+Temperature: 27.1C, Pressure 100335 Pa
+Thermistor ADC: 481
+$GPGGA,223334.00,,,,,0,05,3.03,,,,,,*54
+
+GPS Update 22:33:34 T=+158313l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +158
+Temperature: 27.2C, Pressure 100330 Pa
+Thermistor ADC: 480
+$GPGGA,223336.00,,,,,0,05,3.02,,,,,,*57
+
+GPS Update 22:33:36 T=+160316l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +160
+Temperature: 27.2C, Pressure 100331 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223336h4003.58N/07400.77WO000/000/A=000160160,27.2C,100331,481
+APRS packet:
+/223336h4003.58N/07400.77WO000/000/A=000160160,27.2C,100331,481
+$GPGGA,223338.00,,,,,0,04,6.21,,,,,,*5C
+
+GPS Update 22:33:38 T=+162312l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 4
+
+Logging T = +162
+Temperature: 27.2C, Pressure 100323 Pa
+Thermistor ADC: 480
+$GPGGA,223340.00,,,,,0,05,3.02,,,,,,*56
+
+GPS Update 22:33:40 T=+164313l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +164
+Temperature: 27.2C, Pressure 100335 Pa
+Thermistor ADC: 481
+$GPGGA,223342.00,,,,,0,05,3.02,,,,,,*54
+
+GPS Update 22:33:42 T=+166314l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +166
+Temperature: 27.2C, Pressure 100325 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223342h4003.58N/07400.77WO000/000/A=000160167,27.2C,100341,481
+APRS packet:
+/223342h4003.58N/07400.77WO000/000/A=000160167,27.2C,100341,481
+$GPGGA,223344.00,,,,,0,05,3.02,,,,,,*52
+
+GPS Update 22:33:44 T=+168316l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +169
+Temperature: 27.2C, Pressure 100333 Pa
+Thermistor ADC: 480
+$GPGGA,223346.00,,,,,0,05,3.02,,,,,,*50
+
+GPS Update 22:33:46 T=+170315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +171
+Temperature: 27.1C, Pressure 100331 Pa
+Thermistor ADC: 480
+$GPGGA,223348.00,,,,,0,05,3.02,,,,,,*5E
+
+GPS Update 22:33:48 T=+172315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +173
+Temperature: 27.2C, Pressure 100330 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223348h4003.58N/07400.77WO000/000/A=000160173,27.2C,100335,481
+APRS packet:
+/223348h4003.58N/07400.77WO000/000/A=000160173,27.2C,100335,481
+$GPGGA,223350.00,,,,,0,05,3.02,,,,,,*57
+
+GPS Update 22:33:50 T=+174484l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+Logging T = +175
+Temperature: 27.2C, Pressure 100339 Pa
+Thermistor ADC: 480
+$GPGGA,223352.00,,,,,0,05,3.01,,,,,,*56
+
+GPS Update 22:33:52 T=+176315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +177
+Temperature: 27.1C, Pressure 100337 Pa
+Thermistor ADC: 480
+$GPGGA,223354.00,,,,,0,05,3.01,,,,,,*50
+
+GPS Update 22:33:54 T=+178315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +179
+Temperature: 27.1C, Pressure 100335 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223354h4003.58N/07400.77WO000/000/A=000160179,27.2C,100338,481
+APRS packet:
+/223354h4003.58N/07400.77WO000/000/A=000160179,27.2C,100338,481
+$GPGGA,223356.00,,,,,0,05,3.01,,,,,,*52
+
+GPS Update 22:33:56 T=+180744l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+Logging T = +181
+Temperature: 27.1C, Pressure 100335 Pa
+Thermistor ADC: 481
+$GPGGA,223358.00,,,,,0,05,3.01,,,,,,*5C
+
+GPS Update 22:33:58 T=+182315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +183
+Temperature: 27.1C, Pressure 100332 Pa
+Thermistor ADC: 480
+$GPGGA,223400.00,,,,,0,05,3.01,,,,,,*56
+
+GPS Update 22:34:0 T=+184315l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+
+Logging T = +185
+Temperature: 27.1C, Pressure 100335 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223400h4003.58N/07400.77WO000/000/A=000160185,27.1C,100339,481
+APRS packet:
+/223400h4003.58N/07400.77WO000/000/A=000160185,27.1C,100339,481
+$GPGGA,223402.00,,,,,0,05,3.01,,,,,,*54
+
+GPS Update 22:34:2 T=+187006l
+Location: 40.346081, -74.657143 altitude 49.000000
+Satellites: 5
+Logging T = +187
+Temperature: 27.1C, Pressure 100335 Pa
+Thermistor ADC: 480
+$GPGGA,223404.00,4020.75861,N,07439.42948,W,1,05,3.01,95.6,M,-34.5,M,,*5E
+
+GPS Update 22:34:4 T=+188350l
+Location: 40.345978, -74.657158 altitude 95.599998
+Satellites: 5
+
+Logging T = +189
+Temperature: 27.1C, Pressure 100332 Pa
+Thermistor ADC: 480
+$GPGGA,223406.00,4020.75875,N,07439.42931,W,1,05,3.01,94.3,M,-34.5,M,,*53
+
+GPS Update 22:34:6 T=+190350l
+Location: 40.345978, -74.657158 altitude 94.300003
+Satellites: 5
+
+Logging T = +191
+Temperature: 27.1C, Pressure 100335 Pa
+Thermistor ADC: 480
+===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223406h4003.57N/07400.77WO000/000/A=000309192,27.1C,100335,481
+APRS packet:
+/223406h4003.57N/07400.77WO000/000/A=000309192,27.1C,100335,481
+$GPGGA,223408.00,4020.75906,N,07439.42924,W,1,05,3.00,92.9,M,-3Logging T = +194
+Temperature: 27.1C, Pressure 100325 Pa
+Thermistor ADC: 481
+$GPGGA,223410.00,4020.75879,N,07439.42939,W,1,05,3.00,91.5,M,-34.5,M,,*52
+
+GPS Update 22:34:10 T=+194351l
+Location: 40.345982, -74.657158 altitude 91.500000
+Satellites: 5
+
+Logging T = +196
+Temperature: 27.1C, Pressure 100332 Pa
+Thermistor ADC: 481
+$GPGGA,223412.00,4020.75806,N,07439.43029,W,1,05,3.00,90.7,M,-34.5,M,,*52
+
+GPS Update 22:34:12 T=+196351l
+Location: 40.345966, -74.657173 altitude 90.699997
+Satellites: 5
+
+Logging T = +198
+Temperature: 27.1C, Pressure 100334 Pa
+Thermistor ADC: 480
+$GPGGA,223414.00,4020.75713,N,07439.43013===== APRS Transmission =====
+APRS(4): APRS-0,AG6GR-11,WIDE1-1,WIDE2-2 /O
+/223412h4003.57N/07400.77WO000/000/A=000297198,27.1C,100340,481
+APRS packet:
+/223412h4003.57N/07400.77WO000/000/A=000297198,27.1C,100340,481
+,W,1,04,6.18,91.4,M,-34.5,M,,*59
+
+GPS Update 22:34:14 T=+199528l
+Location: 40.345951, -74.657166 altitude 91.400002
+Satellites: 4
+$GPGGA,223416.00,4020.75643,N,07439.42995,Logging T = +200
+Temperature: 27.1C, Pressure 100332 Pa
+Thermistor ADC: 481
+W,1,04,6.17,92.2,M,-34.5,M,,*53
+
+GPS Update 22:34:16 T=+200401l
+Location: 40.345940, -74.657166 altitude 92.199997
+Satellites: 4
