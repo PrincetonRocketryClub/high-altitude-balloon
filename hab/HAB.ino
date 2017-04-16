@@ -73,7 +73,7 @@ Adafruit_BMP085 bmp180; // BMP180 Temperature/Pressure sensor
 
 uint32_t timeOfAPRS = 0; // Time of last APRS transmission
 uint32_t timeLogging = 0; // Time of last logging output
-
+ublox_navmode_t currentUbloxMode = NAVMODE_LOW_PORTABLE;
 // ===== FUNCTIONS ===== //
 
 /*
@@ -225,6 +225,15 @@ void loop()
 		Serial.printf("Location: %f, %f altitude %f\r\n",
 			gps.location.lat(), gps.location.lng(), gps.altitude.meters());
 		*/
+	}
+	if (gps.altitude.isValid()) {
+		if (gps.altitude.meters() > 100 && currentUbloxMode != NAVMODE_AIRBORNE_1G) {
+			ublox_setNavMode(NAVMODE_AIRBORNE_1G);
+			currentUbloxMode = NAVMODE_AIRBORNE_1G;
+		} else if(gps.altitude.meters() < 100 && currentUbloxMode != NAVMODE_LOW_PORTABLE) {
+			ublox_setNavMode(NAVMODE_LOW_PORTABLE);
+			currentUbloxMode = NAVMODE_LOW_PORTABLE;
+		}
 	}
 	
 	if (gps.location.isValid() && millis() - timeOfAPRS > APRSPERIOD) {
