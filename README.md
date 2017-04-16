@@ -12,7 +12,7 @@ Telemetry will be sent via 2m APRS using the [HX1 2m Transmitter](http://www.rad
 Antenna will be a simple half-wavelength dipole, likely based on [this](http://bear.sbszoo.com/construction/antenna/cf/hwcf2.htm) or [this.](http://bear.sbszoo.com/construction/antenna/cf/hwcf1.htm)
 
 ### APRS Message Format
-Use standard headers etc. Message type TBD, likely either generic message or telemetry. Based on "Lat/Long Position Report Format — with Data Extension and Timestamp" in the APRS spec.
+Use standard headers etc. Symbol `/O` (Primay symbol table, symbol ID 'O' corresponding to balloon). Message type based on "Lat/Long Position Report Format — with Data Extension and Timestamp" in the [APRS spec](http://www.aprs.org/doc/APRS101.PDF).
 
 String:
 `[Data Type ID flag:/]HHMMSSh[Latitude ddmm.hh[N/S](8b)][SymtableID (1b)][Longitude dddmm.hh[W/E](9b)][Symbol Code (1b)][Course/Speed (7b)][Arb. data (36b)]`  
