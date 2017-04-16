@@ -17,16 +17,18 @@
 */
 
 #include <WProgram.h>
+#include <SD.h>
+#include <SPI.h>
+
 #include "aprs.h"
-
-// TinyGPSPlus from http://arduiniana.org/libraries/tinygpsplus/
-#include "TinyGPS.h"
-
-// Adafruit BMP180 Library
-#include "adafruit_BMP085.h"
 
 // Ublox configuration code
 #include "ublox.h"
+
+// TinyGPSPlus from http://arduiniana.org/libraries/tinygpsplus/
+#include "TinyGPS.h"
+// Adafruit BMP180 Library
+#include "adafruit_BMP085.h"
 
 // ----- Pin Definitions ----- //
 #define PTT_PIN 13 // Push to talk pin
@@ -53,6 +55,7 @@
 #define MAXSENDBUFFER 500 // Used to allocate a static buffer on the stack to build the AX25 buffer
 #define APRSPERIOD 5000
 #define LOGGINGPERIOD 2000
+#define LOGGINGFILENAME "data.csv"
 
 
 // ===== GLOBAL VARIABLES ==== //
@@ -97,7 +100,7 @@ void broadcastLocation(TinyGPSPlus &gps, char *comment)
 	}
 	
 	// For debugging print out the path
-	/*
+	
 	Serial.print("APRS(");
 	Serial.print(nAddresses);
 	Serial.print("): ");
@@ -112,7 +115,7 @@ void broadcastLocation(TinyGPSPlus &gps, char *comment)
 	Serial.print(SYMBOL_TABLE);
 	Serial.print(SYMBOL_CHAR);
 	Serial.println();
-	*/
+	
 	
 	// Package the packet
 	createAPRSStr(strbuf, gps, SYMBOL_TABLE, SYMBOL_CHAR, comment);
@@ -161,6 +164,25 @@ void setup()
 		0, 0 // No VOX ton
 	);
 	
+	// ----- SD Setup ----- //
+	Serial.println("----- SD SETUP -----");
+	if (SD.begin(BUILTIN_SDCARD)) {
+		Serial.println("SD init succesful");
+	} else {
+		Serial.println("SD init failed, or card not present");
+	}
+	
+	if (SD.exists(LOGGINGFILENAME)) {
+		Serial.print(LOGGINGFILENAME);
+		Serial.println(" already exists");
+	} else {
+		Serial.print(LOGGINGFILENAME);
+		Serial.println(" not found, creating");
+		File dataFile = SD.open(LOGGINGFILENAME, FILE_WRITE);
+		dataFile.println("Timestamp (ms), Time, Latitude, Longitude, Altitude (cm), BMP180 Temperature, BMP180 Pressure, Thermistor");
+		dataFile.close();
+	}
+	
 	Serial.println("===== SETUP COMPLETE =====");
 	
 	// ----- Test REMOVE BEFORE LAUNCH ----- //
@@ -206,18 +228,43 @@ void loop()
 	}
 	
 	if (gps.location.isValid() && millis() - timeOfAPRS > APRSPERIOD) {
-		Serial.println("Initializing APRS Transmission");
-		broadcastLocation(gps, "HELLO");
+		Serial.println("===== APRS Transmission =====");
+		char comment[36];
+		snprintf(comment, 36, "%lu,%.1fC,%lu,%d", 
+			millis()/1000,
+			bmp180.readTemperature(), 
+			bmp180.readPressure(), 
+			analogRead(THERMISTOR_PIN));
+		
+		broadcastLocation(gps, comment);
 		timeOfAPRS = millis();
 	}
 	
 	if (millis() - timeLogging > LOGGINGPERIOD) {
-		Serial.printf("Logging T = +%ul", millis()/1000);
-		Serial.printf("Temperature: %fC, Pressure %d Pa\r\n", 
+		Serial.printf("Logging T = +%lu\r\n", millis()/1000);
+		Serial.printf("Temperature: %.1fC, Pressure %d Pa\r\n", 
 			bmp180.readTemperature(), bmp180.readPressure());
 		Serial.print("Thermistor ADC: ");
-		int value = analogRead(THERMISTOR_PIN);
-		Serial.println(value);
+		Serial.println(analogRead(THERMISTOR_PIN));
+		
+		File dataFile = SD.open(LOGGINGFILENAME, FILE_WRITE);
+		if (dataFile) {
+			dataFile.printf("%lu,%lu,%f,%f,%lu,%.1f,%lu,%d\r\n",
+				millis(),
+				gps.time.value(),
+				gps.location.lat(),
+				gps.location.lng(),
+				gps.altitude.value(),
+				bmp180.readTemperature(),
+				bmp180.readPressure(),
+				analogRead(THERMISTOR_PIN)
+			);
+			dataFile.close();
+		} else {
+			Serial.print("Error opening ");
+			Serial.println(LOGGINGFILENAME);
+		}
+		
 		timeLogging = millis();
 	}
 }
