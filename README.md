@@ -17,6 +17,20 @@ Use standard headers etc. Message type TBD, likely either generic message or tel
 String:
 `[Data Type ID flag:/]HHMMSSh[Latitude ddmm.hh[N/S](8b)][SymtableID (1b)][Longitude dddmm.hh[W/E](9b)][Symbol Code (1b)][Course/Speed (7b)][Arb. data (36b)]`  
 
+### Comment format
+Chars | Description | Example
+----- | ----------- | -------
+5 | Timestamp (sec) | 12000
+1 | Separator | ,
+5 | BMP180 Temperature (C) | -60.0
+1 | Separator | ,
+6 | BMP180 Pressure (Pa) | 101580
+1 | Separator | ,
+4 | Thermistor ADC Value, max 1023 | 1017
+23 | Total |
+
+
+
 ### HX-1 Transmitter
 - [Main Page](http://www.radiometrix.com/content/hx1)
 
