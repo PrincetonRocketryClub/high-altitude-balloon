@@ -31,7 +31,6 @@ _autosave-*
 *.pch
 
 # Libraries
-*.lib
 *.a
 *.la
 *.lo

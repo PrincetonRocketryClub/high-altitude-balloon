@@ -1,4 +1,4 @@
-update=Tuesday, April 18, 2017 'PMt' 04:38:56 PM
+update=Thursday, April 27, 2017 'PMt' 03:52:44 PM
 version=1
 last_client=kicad
 [pcbnew]
@@ -23,11 +23,9 @@ ModuleOutlineThickness=0.150000000000
 [cvpcb]
 version=1
 NetIExt=net
-[general]
-version=1
 [eeschema]
 version=1
-LibDir=libraries;libraries;libraries/HX1.pretty;libraries/kicad_teensy-master/Teensy.pretty
+LibDir=
 [eeschema/libraries]
 LibName1=power
 LibName2=device
@@ -58,5 +56,5 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
-LibName30=libraries/kicad_teensy-master/teensy
-LibName31=libraries/hx1
+[general]
+version=1
