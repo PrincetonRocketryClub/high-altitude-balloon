@@ -34,14 +34,17 @@
 #define MAXSENDBUFFER 500
 
 uint16_t preambleFlags;
+const unsigned long billion = 1000000000UL;
 
 // Convert latitude from a float to a string DDMM.MM[N/S]
 int latToStr(char * const s, const int size, RawDegrees latitude)
 {
 	char hemisphere = latitude.negative ? 'S' : 'N';
 	// TODO verify if minutes includes whole degrees
-	uint32_t milli_minutes = 60 * latitude.billionths / 10000000;
-	return snprintf(s, size, "%02d%02lu.%02lu%c", latitude.deg, milli_minutes / 100, milli_minutes % 100, hemisphere);
+	double minutes = latitude.billionths;
+	minutes = minutes  / billion * 60;
+	
+	return snprintf(s, size, "%02d%02.2f%c", latitude.deg, minutes, hemisphere);
 }
 
 // Convert latitude from a float to a string DDDMM.MM[W/E]
@@ -50,8 +53,9 @@ int lonToStr(char * const s, const int size, RawDegrees longitude)
 	char hemisphere = longitude.negative ? 'W' : 'E';
 	
 	// TODO verify if minutes includes whole degrees
-	uint32_t milli_minutes = 60 * longitude.billionths / 10000000;
-	return snprintf(s, size, "%03d%02lu.%02lu%c", longitude.deg, milli_minutes / 100, milli_minutes % 100, hemisphere);
+	double minutes = longitude.billionths ;
+	minutes = minutes  / billion * 60;
+	return snprintf(s, size, "%03d%02.2f%c", longitude.deg, minutes, hemisphere);
 }
 /*
  * Packages the given GPS and identification information into an APRS packet string

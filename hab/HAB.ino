@@ -53,7 +53,7 @@
 
 // ----- Misc Constants ----- //
 #define MAXSENDBUFFER 500 // Used to allocate a static buffer on the stack to build the AX25 buffer
-#define APRSPERIOD 5000
+#define APRSPERIOD 60000
 #define LOGGINGPERIOD 2000
 #define LOGGINGFILENAME "data.csv"
 
