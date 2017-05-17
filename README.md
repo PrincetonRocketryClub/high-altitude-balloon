@@ -1,5 +1,7 @@
 # High Altitude Balloon
-High Altitude Balloon for the Global Space Balloon Challenge
+High Altitude Balloon for the Global Space Balloon Challenge.
+
+Electronics without battery is 70 grams, battery is 98 grams.
 
 ## Controller
 The primary microcontroller used is a [Teensy 3.5](https://www.pjrc.com/store/teensy35.html). The Teensy is a Arduino-compatible ARM based development board. 
