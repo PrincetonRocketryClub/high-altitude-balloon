@@ -33,6 +33,7 @@
 // ----- Pin Definitions ----- //
 #define PTT_PIN 13 // Push to talk pin
 #define THERMISTOR_PIN 36 // Thermistor Analog Input
+#define VALVE_PIN 33
 
 #define GPS_SERIAL Serial4 // GPS Serial port
 #define GPS_BAUDRATE 9600
@@ -53,9 +54,9 @@
 
 // ----- Misc Constants ----- //
 #define MAXSENDBUFFER 500 // Used to allocate a static buffer on the stack to build the AX25 buffer
-#define APRSPERIOD 60000
 #define LOGGINGPERIOD 2000
 #define LOGGINGFILENAME "data.csv"
+#define SAMPLE_ALTITUDE 20000
 
 
 // ===== GLOBAL VARIABLES ==== //
@@ -74,6 +75,9 @@ Adafruit_BMP085 bmp180; // BMP180 Temperature/Pressure sensor
 uint32_t timeOfAPRS = 0; // Time of last APRS transmission
 uint32_t timeLogging = 0; // Time of last logging output
 ublox_navmode_t currentUbloxMode = NAVMODE_LOW_PORTABLE;
+uint16_t APRS_period = 60000;
+
+char hasSampled = 0;
 // ===== FUNCTIONS ===== //
 
 /*
@@ -232,7 +236,7 @@ void loop()
 		}
 	}
 	
-	if (gps.location.isValid() && millis() - timeOfAPRS > APRSPERIOD) {
+	if (gps.location.isValid() && millis() - timeOfAPRS > APRS_period) {
 		Serial.println("===== APRS Transmission =====");
 		char comment[36];
 		snprintf(comment, 36, "%lu,%.1fC,%lu,%d", 
@@ -243,6 +247,12 @@ void loop()
 		
 		broadcastLocation(gps, comment);
 		timeOfAPRS = millis();
+		
+		if (gps.altitude.isValid() && gps.altitude.meters() > 500) {
+			APRS_period = 120000;
+		} else {
+			APRS_period = 60000;
+		}
 	}
 	
 	if (millis() - timeLogging > LOGGINGPERIOD) {
@@ -251,10 +261,12 @@ void loop()
 			bmp180.readTemperature(), bmp180.readPressure());
 		Serial.print("Thermistor ADC: ");
 		Serial.println(analogRead(THERMISTOR_PIN));
+		Serial.print("Air sample: ");
+		Serial.print(hasSampled);
 		
 		File dataFile = SD.open(LOGGINGFILENAME, FILE_WRITE);
 		if (dataFile) {
-			dataFile.printf("%lu,%lu,%f,%f,%lu,%.1f,%lu,%d\r\n",
+			dataFile.printf("%lu,%lu,%f,%f,%lu,%.1f,%lu,%d,%d\r\n",
 				millis(),
 				gps.time.value(),
 				gps.location.lat(),
@@ -262,15 +274,23 @@ void loop()
 				gps.altitude.value(),
 				bmp180.readTemperature(),
 				bmp180.readPressure(),
-				analogRead(THERMISTOR_PIN)
+				analogRead(THERMISTOR_PIN),
+				hasSampled
 			);
 			dataFile.close();
 		} else {
 			Serial.print("Error opening ");
 			Serial.println(LOGGINGFILENAME);
 		}
-		
 		timeLogging = millis();
+		
+		// Air sampling
+		if (hasSampled == 0 && altitude > SAMPLE_ALTITUDE) {
+			digitalWrite(VALVE_PIN, HIGH);
+			hasSampled = 1;
+		} else {
+			digitalWrite(VALVE_PIN, LOW);
+		}
 	}
 }
 
