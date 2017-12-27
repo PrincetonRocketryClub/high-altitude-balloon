@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2014 by Richard Nash (KC3ARY)
+* Copyright (C) 2017 by Sunny He (AG6GR)
 * 
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License
